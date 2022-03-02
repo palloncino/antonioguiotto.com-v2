@@ -1,0 +1,10 @@
+{
+  "views": [
+    {
+      "folderName": "Home",
+      "name": "home",
+      "label": "Weather App",
+      "url": "/"
+    }
+  ]
+}
