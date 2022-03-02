@@ -11,7 +11,7 @@ const StylePageContentContainer = styled(Stack)`
 const ViewWrapper = styled.div`
 	height: 100%;
 	width: 100%;
-	max-width: 2000px;
+	max-width: 1024px;
 	margin: 0 auto;
 `;
 
@@ -20,9 +20,15 @@ const ContentWrapper = styled.div`
   width: 100%;
 `;
 
+const SpecialWordStyle = styled.span<{ color?: string }>`
+	color: ${props => props.color};
+	font-family: 'menlo';
+`;
+
 export {
 	StylePageContentContainer,
 	ViewWrapper,
 	ContentWrapper,
+	SpecialWordStyle,
 };
 

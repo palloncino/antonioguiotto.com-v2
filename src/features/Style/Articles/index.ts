@@ -14,8 +14,7 @@ const StyledParagraphHeader = styled.div`
 
 const StyledParagraph = styled.div`
 	text-align: justify;
-	margin-bottom: 1rem;
-  line-height: 2rem;
+  line-height: 2.5rem;
 `;
 
 const StyledSectionWhite = styled.div`
@@ -44,11 +43,6 @@ const WeatherCardContainer = styled.div`
 
 const WeatherCardProp = styled.div`
 	margin-bottom: .5rem;
-`;
-
-const SpecialWordStyle = styled.span<{ color?: string }>`
-	color: ${props => props.color};
-	font-family: 'menlo';
 `;
 
 const StyledArticlesGrid = styled.div<{gridTemplateColumns?: string, columnGap?: string, rowGap?: string}>`
@@ -84,7 +78,6 @@ export {
 	StyledArticlesStack,
 	StyledParagraphHeader,
 	StyledParagraph,
-	SpecialWordStyle,
 	StyledArticlesGrid,
 	StyledArticleCardContainer,
 	WeatherCardContainer,

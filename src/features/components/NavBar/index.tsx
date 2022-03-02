@@ -1,4 +1,5 @@
-import {Dropdown, IDropdownOption, Stack} from '@fluentui/react';
+/* eslint-disable no-unused-vars */
+import {Text, Dropdown, IDropdownOption, Stack} from '@fluentui/react';
 import {FormEvent, useState} from 'react';
 import {useNavigation} from '../../../hooks';
 import {IFramedChildComponentProps} from '../../../types';
@@ -7,6 +8,7 @@ import {extractModuleFromUrl} from '../../../utils/URL';
 import {Image} from '../Image';
 import logo from '../../../media/svgs/logo.svg';
 import {dropdownStyles, horizontalGapStackTokens, logoStyle, NavBarContentContainer, NavBarWrapper, StyledNavBarBox} from '../../Style/NavBar';
+import {SpecialWordStyle} from '../../Style';
 
 export const NavBar = ({appConfig}: IFramedChildComponentProps) => {
 	const {pathname, navigate} = useNavigation();
@@ -25,6 +27,13 @@ export const NavBar = ({appConfig}: IFramedChildComponentProps) => {
 					<Image src={logo} alt={'guiotto\'s company logo'} style={logoStyle} />
 				</StyledNavBarBox>
 				<StyledNavBarBox>
+					<Text variant={'large'} nowrap block>
+						<SpecialWordStyle>
+							antonioguiotto.com
+						</SpecialWordStyle>
+					</Text>
+				</StyledNavBarBox>
+				{/* <StyledNavBarBox>
 					<Stack horizontal tokens={horizontalGapStackTokens}>
 						<Dropdown
 							options={options}
@@ -33,7 +42,7 @@ export const NavBar = ({appConfig}: IFramedChildComponentProps) => {
 							selectedKey={selectedKey}
 						/>
 					</Stack>
-				</StyledNavBarBox>
+				</StyledNavBarBox> */}
 			</NavBarContentContainer>
 		</NavBarWrapper>
 	);
