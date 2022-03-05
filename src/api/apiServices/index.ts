@@ -24,7 +24,7 @@ const querifyObject = (queryObject: any): string => {
 export const pathFrom = (apiPath: keyof typeof endpoint, queryObject: coordinatesQueryObjectType | weatherQueryObjectType | undefined) => {
 	const path = endpoint[apiPath];
 	const query = querifyObject(queryObject);
-	const apiKey = `appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`;
+	const apiKey = `appid=${process.env.REACT_APP_API_KEY}`;
 	return `${path}${path.includes('?') ? '&' : '?'}${query}${apiKey}`;
 };
 
