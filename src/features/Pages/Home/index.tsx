@@ -6,9 +6,7 @@ import ErrorView from '../../components/ErrorView';
 import Anchor from '../../components/Anchor';
 
 const Home = ({theme}: IApplicationProps) => {
-	const errorMessage = '';
-
-	const errorMessageView = () => <ErrorView message={errorMessage} />;
+	const errorMessageView = () => <ErrorView message={''} />;
 
 	const contentView = () => (
 		<>
