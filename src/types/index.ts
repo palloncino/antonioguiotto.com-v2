@@ -143,6 +143,7 @@ interface IHeroHeaderProps extends IApplicationProps {
 	bgColor?: string;
 	bgImage?: string;
 	headline?: string;
+	subHeadline?: string;
 }
 interface IApplicationProps {
 	theme?: PartialTheme | undefined;

@@ -51,7 +51,7 @@ const Home = ({theme}: IApplicationProps) => {
 					</Text>
 				</StyledParagraphTitle>
 
-				<StyledArticlesGrid>
+				<StyledArticlesGrid gridTemplateColumns={window.innerWidth < 400 ? 'repeat(auto-fit, minmax(300px, 1fr))' : undefined}>
 
 					<StyledParagraph>
 						<Image src={IosSvg} alt="IOS logo" style={iconStyle} />
@@ -132,7 +132,7 @@ const Home = ({theme}: IApplicationProps) => {
 
 				</StyledArticlesGrid>
 			</StyledSectionWhite>
-			<br /><br />
+			<br />
 		</>
 	);
 
@@ -143,7 +143,9 @@ const Home = ({theme}: IApplicationProps) => {
 					<HeroHeader
 						color={theme?.palette?.white}
 						bgImage={bg}
-						headline={'🙋🏻‍♂️ Hi brother/sister. How\'re you doing today?'} />
+						headline={'🙋🏻‍♂️ Hi brother/sister.'}
+						subHeadline={'How\'re you doing today?'}
+					/>
 				</SectionMarginBottom>
 				{errorMessage ? errorMessageView() : contentView()}
 			</StylePageContentContainer>

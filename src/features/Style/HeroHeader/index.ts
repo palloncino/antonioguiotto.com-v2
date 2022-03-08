@@ -4,6 +4,7 @@ const StyledHeroHeader = styled.div<{ bgColor?: string; bgImage?: string; }>`
   height: 400px;
   width: 100%;
   display: flex;
+  flex-direction: column;
   flex-direction: center;
   justify-content: center;
   align-items: center;
