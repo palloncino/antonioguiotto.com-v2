@@ -166,6 +166,8 @@ interface IImageProps {
 }
 
 interface IAnchorProps {
+	target?: string;
+	download?: boolean;
 	text?: string;
 	color?: string;
 	href?: string;

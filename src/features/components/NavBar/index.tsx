@@ -9,6 +9,7 @@ import {Image} from '../Image';
 import logo from '../../../media/svgs/logo.svg';
 import {dropdownStyles, horizontalGapStackTokens, logoStyle, NavBarContentContainer, NavBarWrapper, StyledNavBarBox} from '../../Style/NavBar';
 import {SpecialWordStyle} from '../../Style';
+import Anchor from '../Anchor';
 
 export const NavBar = ({appConfig}: IFramedChildComponentProps) => {
 	const {pathname, navigate} = useNavigation();
@@ -22,17 +23,24 @@ export const NavBar = ({appConfig}: IFramedChildComponentProps) => {
 
 	return (
 		<NavBarWrapper>
-			<NavBarContentContainer>
-				<StyledNavBarBox>
-					<Image src={logo} alt={'guiotto\'s company logo'} style={logoStyle} />
-				</StyledNavBarBox>
-				<StyledNavBarBox>
-					<Text variant={'large'} nowrap block>
-						<SpecialWordStyle>
+			<NavBarContentContainer style={{justifyContent: window.innerWidth < 400 ? 'center' : 'space-between'}}>
+				<Stack style={{display: 'flex', flexDirection: 'row'}}>
+					<StyledNavBarBox>
+						<Image src={logo} alt={'guiotto\'s company logo'} style={logoStyle} />
+					</StyledNavBarBox>
+					<StyledNavBarBox>
+						<Text variant={'large'} nowrap block>
+							<SpecialWordStyle>
 							antonioguiotto.com
-						</SpecialWordStyle>
-					</Text>
-				</StyledNavBarBox>
+							</SpecialWordStyle>
+						</Text>
+					</StyledNavBarBox>
+				</Stack>
+				{window.innerWidth > 400 && (
+					<Stack>
+						<Anchor href="https://s3.amazonaws.com/antonioguiotto.cv/CV.pdf" text="download cv" download target="_blank"/>
+					</Stack>
+				)}
 				{/* <StyledNavBarBox>
 					<Stack horizontal tokens={horizontalGapStackTokens}>
 						<Dropdown

@@ -7,9 +7,9 @@ const StyledAnchor = styled.a<{ color?: string; }>`
   text-decoration: none;
 `;
 
-const Anchor = ({color, href, text}: IAnchorProps) => {
+const Anchor = ({color, href, text, download, target}: IAnchorProps) => {
 	const {palette: {themePrimary}} = useTheme();
-	return <StyledAnchor color={color || themePrimary} href={href} >{text}</StyledAnchor>;
+	return <StyledAnchor color={color || themePrimary} href={href} download={download} target={target}>{text}</StyledAnchor>;
 };
 
 export default Anchor;

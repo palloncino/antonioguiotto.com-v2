@@ -22,7 +22,7 @@ const NavBarContentContainer = styled.div`
 	height: 100%;
   width: 100%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
 	padding: 0 2rem;
 `;
