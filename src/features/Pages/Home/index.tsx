@@ -1,45 +1,129 @@
-import {IApplicationProps} from '../../../types';
-import HeroHeader from '../../components/HeroHeader';
-import {SectionMarginBottom, SpecialWordStyle, StyledParagraph, StylePageContentContainer} from '../../Style';
 import {Text} from '@fluentui/react';
-import ErrorView from '../../components/ErrorView';
+import DiscordSvg from '../../../media/svgs/discord.svg';
+import InstagramSvg from '../../../media/svgs/instagram.svg';
+import GmailSvg from '../../../media/svgs/gmail.svg';
+import GithubSvg from '../../../media/svgs/github.svg';
+import IosSvg from '../../../media/svgs/ios.svg';
+import ReactSvg from '../../../media/svgs/react.svg';
+import TypescriptSvg from '../../../media/svgs/typescript.svg';
+import NodeJsSvg from '../../../media/svgs/nodejs.svg';
+import GitSvg from '../../../media/svgs/git.svg';
+import bg from '../../../media/svgs/bg.svg';
+import {IApplicationProps} from '../../../types';
 import Anchor from '../../components/Anchor';
+import ErrorView from '../../components/ErrorView';
+import HeroHeader from '../../components/HeroHeader';
+import {Image} from '../../components/Image';
+import {SectionMarginBottom, SpecialWordStyle, StyledParagraph, StylePageContentContainer} from '../../Style';
 
 const Home = ({theme}: IApplicationProps) => {
 	const errorMessage = '';
 	const errorMessageView = () => <ErrorView message={errorMessage} />;
 
+	const iconStyle = {
+		display: 'flex',
+		alignItems: 'end',
+		maxWidth: '1.2rem',
+		marginRight: '.5rem',
+	};
+
 	const contentView = () => (
 		<>
-			<StyledParagraph>
-				<Text variant={'large'}>
-					Hi, am a Software Developer helping enterprises make web applications with React and Typescript.
-				</Text>
-			</StyledParagraph>
+			<SectionMarginBottom>
+				<StyledParagraph>
+					<Text variant={'xLarge'}>
+					What I do
+					</Text>
+				</StyledParagraph>
 
-			<StyledParagraph>
-				<Text variant={'large'}>
-					Glad you came in here, for any sort of collaboration, feel free to get in touch by any of the following channels.
-				</Text>
-			</StyledParagraph>
+				<StyledParagraph>
+					<Text variant={'large'}>
+					Hi, am a Software Developer helping enterprises make the best out of their presence online.
+					</Text>
+				</StyledParagraph>
+			</SectionMarginBottom>
 
-			<StyledParagraph>
-				<Text variant={'large'}>
+			<SectionMarginBottom>
+
+				<StyledParagraph>
+					<Text variant={'xLarge'}>
+					My daily bread
+					</Text>
+				</StyledParagraph>
+
+				<StyledParagraph>
+					<Image src={IosSvg} alt="IOS logo" style={iconStyle} />
+					<Text variant={'large'}>
+					Apple Machine
+					</Text>
+				</StyledParagraph>
+
+				<StyledParagraph>
+					<Image src={ReactSvg} alt="React logo" style={iconStyle} />
+					<Text variant={'large'}>
+					React
+					</Text>
+				</StyledParagraph>
+
+				<StyledParagraph>
+					<Image src={TypescriptSvg} alt="TS logo" style={iconStyle} />
+					<Text variant={'large'}>
+					Typescript
+					</Text>
+				</StyledParagraph>
+
+				<StyledParagraph>
+					<Image src={NodeJsSvg} alt="Node logo" style={iconStyle} />
+					<Text variant={'large'}>
+					NodeJs
+					</Text>
+				</StyledParagraph>
+
+				<StyledParagraph>
+					<Image src={GitSvg} alt="Git logo" style={iconStyle} />
+					<Text variant={'large'}>
+					Git
+					</Text>
+				</StyledParagraph>
+
+			</SectionMarginBottom>
+
+			<SectionMarginBottom>
+
+				<StyledParagraph>
+					<Text variant={'xLarge'}>
+					Get in touch
+					</Text>
+				</StyledParagraph>
+
+				<StyledParagraph>
+					<Image src={GmailSvg} alt="Gmail logo" style={iconStyle} />
+					<Text variant={'large'}>
+					My email: <SpecialWordStyle color={theme?.palette?.themePrimary}>powerhydratoni@gmail.com</SpecialWordStyle>
+					</Text>
+				</StyledParagraph>
+
+				<StyledParagraph>
+					<Image src={GithubSvg} alt="Github logo" style={iconStyle} />
+					<Text variant={'large'}>
 					If you are a developer, this is my <Anchor href="https://github.com/palloncino" text="github account"/>
-				</Text>
-			</StyledParagraph>
+					</Text>
+				</StyledParagraph>
 
-			<StyledParagraph>
-				<Text variant={'large'}>
+				<StyledParagraph>
+					<Image src={InstagramSvg} alt="Instagram logo" style={iconStyle} />
+					<Text variant={'large'}>
 					This is my <Anchor href="https://instagram.com/antonio_guiotto" text="instagram"/>
-				</Text>
-			</StyledParagraph>
+					</Text>
+				</StyledParagraph>
 
-			<StyledParagraph>
-				<Text variant={'large'}>
+				<StyledParagraph>
+					<Image src={DiscordSvg} alt="Discord logo" style={iconStyle} />
+					<Text variant={'large'}>
 					My discord ID is <SpecialWordStyle color={theme?.palette?.themePrimary}>Toni#2583</SpecialWordStyle>
-				</Text>
-			</StyledParagraph>
+					</Text>
+				</StyledParagraph>
+			</SectionMarginBottom>
 		</>
 	);
 
@@ -49,7 +133,7 @@ const Home = ({theme}: IApplicationProps) => {
 				<SectionMarginBottom>
 					<HeroHeader
 						color={theme?.palette?.white}
-						bgColor={`linear-gradient(113.96deg, ${theme?.palette?.themeDarker} 0%, ${theme?.palette?.themePrimary} 48.44%, ${theme?.palette?.themeDarker} 100%)`}
+						bgImage={bg}
 						headline={'Welcome'} />
 				</SectionMarginBottom>
 				{errorMessage ? errorMessageView() : contentView()}

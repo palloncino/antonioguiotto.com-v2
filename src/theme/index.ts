@@ -11,7 +11,7 @@ const goldenTheme = createTheme({
 		themeSecondary: '#1a86d9',
 		themeDarkAlt: '#006cbe',
 		themeDark: '#005ba1',
-		themeDarker: '#004377',
+		themeDarker: '#0078d4',
 		neutralLighterAlt: '#faf9f8',
 		neutralLighter: '#f3f2f1',
 		neutralLight: '#edebe9',

@@ -15,6 +15,8 @@ const StyledParagraphHeader = styled.div`
 const StyledParagraph = styled.div`
 	text-align: justify;
   line-height: 2.5rem;
+	display: flex;
+	align-items: center;
 `;
 
 const StyledSectionWhite = styled.div`
