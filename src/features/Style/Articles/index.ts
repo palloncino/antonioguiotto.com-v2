@@ -19,6 +19,13 @@ const StyledParagraph = styled.div`
 	align-items: center;
 `;
 
+const StyledParagraphTitle = styled.div`
+	text-align: justify;
+  margin-bottom: 2rem;
+	display: flex;
+	align-items: center;
+`;
+
 const StyledSectionWhite = styled.div`
 	background: #fff;
 	padding: 1.2rem;
@@ -47,9 +54,9 @@ const WeatherCardProp = styled.div`
 	margin-bottom: .5rem;
 `;
 
-const StyledArticlesGrid = styled.div<{gridTemplateColumns?: string, columnGap?: string, rowGap?: string}>`
+const StyledArticlesGrid = styled.div<{gridTemplateColumns?: string | string[], columnGap?: string, rowGap?: string}>`
 	display: grid;
-	grid-template-columns: ${props => props.gridTemplateColumns || 'repeat(3, 1fr)'};
+	grid-template-columns: ${props => props.gridTemplateColumns || 'repeat(auto-fit, minmax(400px, 1fr))'};
 	column-gap: ${props => props.columnGap || '1rem'};
 	row-gap: ${props => props.rowGap || '1rem'};
 `;
@@ -88,4 +95,5 @@ export {
 	SectionMarginBottom,
 	StyledErrorViewContainer,
 	StyledCardsHead,
+	StyledParagraphTitle,
 };
