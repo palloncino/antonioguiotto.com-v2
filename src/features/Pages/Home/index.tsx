@@ -51,7 +51,7 @@ const Home = ({theme}: IApplicationProps) => {
 					</Text>
 				</StyledParagraphTitle>
 
-				<StyledArticlesGrid gridTemplateColumns={window.innerWidth < 400 ? 'repeat(auto-fit, minmax(300px, 1fr))' : undefined}>
+				<StyledArticlesGrid gridTemplateColumns={window.innerWidth < 400 ? 'repeat(auto-fit, minmax(300px, 1fr))' : 'repeat(auto-fit, minmax(100px, 1fr))'}>
 
 					<StyledParagraph>
 						<Image src={IosSvg} alt="IOS logo" style={iconStyle} />

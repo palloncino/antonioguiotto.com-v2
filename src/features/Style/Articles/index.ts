@@ -31,7 +31,7 @@ const StyledSectionWhite = styled.div`
 	padding: 1.2rem;
 	margin-bottom: 2rem;
 	border-radius: .2rem;
-	box-shadow: 0px 0.6px 1.8px rgba(0, 0, 0, 0.1), 0px 3.2px 7.2px rgba(0, 0, 0, 0.13);
+	// box-shadow: 0px 0.6px 1.8px rgba(0, 0, 0, 0.1), 0px 3.2px 7.2px rgba(0, 0, 0, 0.13);
 `;
 
 const SectionMarginBottom = styled.div`
@@ -46,7 +46,7 @@ const WeatherCardContainer = styled.div`
 	background: #fff;
 	border-radius: .2rem;
 	padding: 1rem;
-	box-shadow: 0px 0.6px 1.8px rgba(0, 0, 0, 0.1), 0px 3.2px 7.2px rgba(0, 0, 0, 0.13);
+	// box-shadow: 0px 0.6px 1.8px rgba(0, 0, 0, 0.1), 0px 3.2px 7.2px rgba(0, 0, 0, 0.13);
 	margin-bottom: 1rem;
 `;
 
