@@ -1,4 +1,3 @@
-/* eslint-disable */
 import {IFontStyles, Text} from '@fluentui/react';
 import DiscordSvg from '../../../media/svgs/discord.svg';
 import InstagramSvg from '../../../media/svgs/instagram.svg';
@@ -17,7 +16,7 @@ import HeroHeader from '../../components/HeroHeader';
 import {Image} from '../../components/Image';
 import {StyledSectionWhite, SpecialWordStyle, StyledParagraph, StylePageContentContainer, SectionMarginBottom, StyledArticlesGrid, StyledParagraphTitle} from '../../Style';
 import {useEffect, useState} from 'react';
-import { CSSProperties } from 'styled-components';
+import {throttle} from 'lodash';
 
 const Home = ({theme}: IApplicationProps) => {
 	const errorMessage = '';
@@ -34,18 +33,21 @@ const Home = ({theme}: IApplicationProps) => {
 	const [iconGridTemplateColumns, setIconGridTemplateColumns] = useState<string | undefined>(undefined);
 
 	useEffect(() => {
-		window.addEventListener('resize', handleResize);
+		addEventListener('resize', throttle(handleResize, 500));
+		dispatchEvent(new CustomEvent('resize'));
 	});
 
-	const handleResize = (event: any) => { // use throttle
-		console.log({event})
-		const width = window.innerWidth;
-		if (width > 500) {
+	const handleResize = (event: any) => {
+		const {innerWidth} = event.target;
+		if (innerWidth >= 800) {
 			setTextSize('large');
-			setIconGridTemplateColumns('repeat(auto-fit, minmax(100px, 1fr))');
-		} else if (width <= 500) {
+			setIconGridTemplateColumns('repeat(3, 1fr)');
+		} else if (innerWidth >= 500 && innerWidth < 800) {
 			setTextSize('medium');
-			setIconGridTemplateColumns('repeat(auto-fit, minmax(300px, 1fr))')
+			setIconGridTemplateColumns('repeat(2, 1fr)');
+		} else if (innerWidth < 500) {
+			setTextSize('medium');
+			setIconGridTemplateColumns('1fr');
 		}
 	};
 
