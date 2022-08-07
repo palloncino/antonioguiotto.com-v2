@@ -8,7 +8,7 @@ const HeroHeader = ({color, bgColor, bgImage, headline, subHeadline}: IHeroHeade
 			{headline ? headline : 'Title'}
 		</Text>
 		<Text style={{color}} variant={window.innerWidth < 400 ? 'large' : 'xLarge'} block>
-			{subHeadline ? subHeadline : 'Sub Title'}
+			{subHeadline ? subHeadline : ''}
 		</Text>
 	</StyledHeroHeader>
 );

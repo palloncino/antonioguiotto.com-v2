@@ -23,6 +23,6 @@ aws s3 sync ${SOURCE_DIR} s3://${BUCKET}/
 echo "S3 Upload complete"
 
 echo "Invalidating cloudfrond distribution to get fresh cache"
-aws cloudfront create-invalidation --distribution-id=E2EQL0AAS6JARG --paths / --profile=root
+aws cloudfront create-invalidation --distribution-id=E2EQL0AAS6JARG --paths / --profile=a3
 
 echo "Deployment complete" 

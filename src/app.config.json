@@ -1,9 +1,21 @@
 {
   "views": [
     {
-      "folderName": "Home",
-      "name": "home",
-      "label": "Weather App",
+      "folderName": "CV",
+      "name": "CV",
+      "label": "CV",
+      "url": "/cv"  
+    },
+    {
+      "folderName": "Memes",
+      "name": "memes",
+      "label": "Memes",
+      "url": "/memes"
+    },
+    {
+      "folderName": "Index",
+      "name": "index",
+      "label": "Index",
       "url": "/"
     }
   ]

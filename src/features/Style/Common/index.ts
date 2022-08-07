@@ -8,6 +8,10 @@ const StylePageContentContainer = styled(Stack)`
 	max-width: 1024px;
 `;
 
+const WebsiteContainer = styled(Stack)`
+  border: 1px solid;
+`;
+
 const ViewWrapper = styled.div`
 	height: 100%;
 	width: 100%;
@@ -30,5 +34,6 @@ export {
 	ViewWrapper,
 	ContentWrapper,
 	SpecialWordStyle,
+	WebsiteContainer,
 };
 

@@ -166,11 +166,13 @@ interface IImageProps {
 }
 
 interface IAnchorProps {
+	theme?: PartialTheme | undefined;
 	target?: string;
 	download?: boolean;
 	text?: string;
 	color?: string;
 	href?: string;
+	tabIndex?: boolean;
 }
 
 export enum ArticleTagType {

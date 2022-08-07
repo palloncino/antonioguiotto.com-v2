@@ -1,56 +1,66 @@
 /* eslint-disable no-unused-vars */
-import {Text, Dropdown, IDropdownOption, Stack} from '@fluentui/react';
+import {Dropdown, IDropdownOption, Stack, Text} from '@fluentui/react';
 import {FormEvent, useState} from 'react';
 import {useNavigation} from '../../../hooks';
 import {IFramedChildComponentProps} from '../../../types';
 import {viewsToDropdownOptions} from '../../../utils';
 import {extractModuleFromUrl} from '../../../utils/URL';
-import {Image} from '../Image';
-import logo from '../../../media/svgs/logo.svg';
-import {dropdownStyles, horizontalGapStackTokens, logoStyle, NavBarContentContainer, NavBarWrapper, StyledNavBarBox} from '../../Style/NavBar';
+import {useEffect} from 'react';
+import logo from '../../../media/svgs/logo-white.svg';
 import {SpecialWordStyle} from '../../Style';
+import {dropdownStyles, horizontalGapStackTokens, logoStyle, NavBarContentContainer, NavBarWrapper, StyledNavBarBox} from '../../Style/NavBar';
 import Anchor from '../Anchor';
+import {useDevice} from '../../../hooks/useDevice';
 
 export const NavBar = ({appConfig}: IFramedChildComponentProps) => {
 	const {pathname, navigate} = useNavigation();
+	const {isMobile} = useDevice();
 	const [selectedKey, setSelectedKey] = useState(extractModuleFromUrl(pathname));
 	const options: IDropdownOption[] = viewsToDropdownOptions(appConfig?.views || []);
 	const handleChangedDropdown = (_: FormEvent<HTMLDivElement>, module: IDropdownOption | undefined): void => {
+		console.log({_, module});
 		const selectedItemKey = `${module?.key}` || '';
 		setSelectedKey(selectedItemKey);
 		navigate(selectedItemKey);
 	};
 
+	useEffect(() => {
+		console.log(pathname);
+	}, [pathname]);
+
 	return (
 		<NavBarWrapper>
-			<NavBarContentContainer style={{justifyContent: window.innerWidth < 400 ? 'center' : 'space-between'}}>
-				<Stack style={{display: 'flex', flexDirection: 'row'}}>
+			<NavBarContentContainer style={{justifyContent: 'space-between'}}>
+				<Stack style={{display: 'flex', flexDirection: 'row', padding: '0rem'}} tabIndex={1} onKeyPress={e => e.charCode === 13 && handleChangedDropdown({} as FormEvent<HTMLDivElement>, {key: '/', text: ''})}>
 					<StyledNavBarBox>
-						<Image src={logo} alt={'guiotto\'s company logo'} style={logoStyle} />
+						<img src={logo} alt={'guiotto\'s company logo'} style={{...logoStyle}} />
 					</StyledNavBarBox>
-					<StyledNavBarBox>
-						<Text variant={'large'} nowrap block>
-							<SpecialWordStyle>
-							antonioguiotto.com
-							</SpecialWordStyle>
-						</Text>
-					</StyledNavBarBox>
+					{!isMobile && (
+						<StyledNavBarBox>
+							<Text variant={'large'} nowrap block>
+								<SpecialWordStyle>
+									antonioguiotto.com
+								</SpecialWordStyle>
+							</Text>
+						</StyledNavBarBox>
+					)}
 				</Stack>
-				{window.innerWidth > 400 && (
+				{window.innerWidth > 400 && pathname === '/cv' && (
 					<Stack>
-						<Anchor href="https://s3.amazonaws.com/antonioguiotto.cv/CV.pdf" text="download cv" download target="_blank"/>
+						<a style={{transform: 'scale(1.2)', textDecoration: 'none', color: '#e0f'}} tabIndex={1} href="" download target="_blank">download cv</a>
 					</Stack>
 				)}
-				{/* <StyledNavBarBox>
+				<StyledNavBarBox>
 					<Stack horizontal tokens={horizontalGapStackTokens}>
 						<Dropdown
+							tabIndex={1}
 							options={options}
 							styles={dropdownStyles}
 							onChange={handleChangedDropdown}
 							selectedKey={selectedKey}
 						/>
 					</Stack>
-				</StyledNavBarBox> */}
+				</StyledNavBarBox>
 			</NavBarContentContainer>
 		</NavBarWrapper>
 	);
