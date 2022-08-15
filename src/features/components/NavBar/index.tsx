@@ -31,7 +31,15 @@ export const NavBar = ({appConfig}: IFramedChildComponentProps) => {
 	return (
 		<NavBarWrapper>
 			<NavBarContentContainer style={{justifyContent: 'space-between'}}>
-				<Stack style={{display: 'flex', flexDirection: 'row', padding: '0rem'}} tabIndex={1} onKeyPress={e => e.charCode === 13 && handleChangedDropdown({} as FormEvent<HTMLDivElement>, {key: '/', text: ''})}>
+				<Stack style={{
+					display: 'flex',
+					flexDirection: 'row',
+					alignItems: 'center',
+					justifyContent: 'center',
+					padding: '0rem',
+					height: '32px',
+					width: '260px',
+				}} tabIndex={1} onKeyPress={e => e.charCode === 13 && handleChangedDropdown({} as FormEvent<HTMLDivElement>, {key: '/', text: ''})}>
 					<StyledNavBarBox>
 						<img src={logo} alt={'guiotto\'s company logo'} style={{...logoStyle}} />
 					</StyledNavBarBox>

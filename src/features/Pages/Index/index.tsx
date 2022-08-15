@@ -27,10 +27,24 @@ const Index = ({theme}: IApplicationProps) => {
 	const [customAlert, setCustomAlert] = useState<string | undefined>(undefined);
 	const {isMobile} = useDevice();
 
+	const useCustomAlert = async (text: string, ms: number = 2000) => {
+		setCustomAlert(text);
+		await delay(ms);
+		setCustomAlert(undefined);
+
+		function delay(ms: number) {
+			return new Promise(resolve => setTimeout(resolve, ms));
+		}
+	};
+
 	useEffect(() => {
 		addEventListener('resize', throttle(handleResize, 500));
 		dispatchEvent(new CustomEvent('resize'));
 	});
+
+	useEffect(() => {
+		useCustomAlert('You can use TAB to navigate.', 4000);
+	}, []);
 
 	const handleResize = (event: any) => {
 		const {innerWidth} = event.target;
@@ -64,114 +78,111 @@ const Index = ({theme}: IApplicationProps) => {
 
 	const contentView = () => (
 		<>
-			<StyledSectionWhite>
-				<StyledArticlesGrid rowGap={isMobile ? '.2rem' : '1rem'} gridTemplateColumns={'repeat(auto-fit, minmax(330px, 1fr))'}>
+			<StyledArticlesGrid rowGap={isMobile ? '.2rem' : '1rem'} gridTemplateColumns={'repeat(auto-fit, minmax(48%, 1fr))'}>
 
-					<StyledParagraph2
-						isMobile={isMobile}
-						tabIndex={1}
-						onKeyPress={() => handleCopyToClipboard('powerhydratoni@gmail.com')}>
-						<IconContainer>
-							<img style={imgStyle} src={GmailSvg} alt="Gmail logo"/>
-						</IconContainer>
-						<TextContainerStyle>
-							<Text variant={isMobile ? 'medium' : 'xLarge'}>
-								<SpecialWordStyle color={theme?.palette?.themePrimary}>Gmail</SpecialWordStyle>
-							</Text>
-							<Text variant={textSize}>
+				<StyledParagraph2
+					isMobile={isMobile}
+					tabIndex={1}
+					onKeyPress={() => handleCopyToClipboard('powerhydratoni@gmail.com')}>
+					<IconContainer>
+						<img style={imgStyle} src={GmailSvg} alt="Gmail logo"/>
+					</IconContainer>
+					<TextContainerStyle>
+						<Text variant={isMobile ? 'medium' : 'xLarge'}>
+							<SpecialWordStyle color={theme?.palette?.themePrimary}>Gmail</SpecialWordStyle>
+						</Text>
+						<Text variant={textSize}>
 								powerhydratoni@gmail.com
-							</Text>
-						</TextContainerStyle>
-					</StyledParagraph2>
+						</Text>
+					</TextContainerStyle>
+				</StyledParagraph2>
 
-					<StyledParagraph2
-						isMobile={isMobile}
-						tabIndex={1}
-						onKeyPress={(e: any) => e.charCode === Keyboard.Enter && handleRedirect('github.com/palloncino')}>
-						<IconContainer>
-							<img style={imgStyle} src={GithubSvg} alt="Github logo"/>
-						</IconContainer>
-						<TextContainerStyle>
-							<Text variant={isMobile ? 'medium' : 'xLarge'}>
-								<SpecialWordStyle color={theme?.palette?.themePrimary}><Anchor href="https://github.com/palloncino" text="Github"/></SpecialWordStyle>
-							</Text>
-							<Text variant={textSize}>
+				<StyledParagraph2
+					isMobile={isMobile}
+					tabIndex={1}
+					onKeyPress={(e: any) => e.charCode === Keyboard.Enter && handleRedirect('github.com/palloncino')}>
+					<IconContainer>
+						<img style={imgStyle} src={GithubSvg} alt="Github logo"/>
+					</IconContainer>
+					<TextContainerStyle>
+						<Text variant={isMobile ? 'medium' : 'xLarge'}>
+							<SpecialWordStyle color={theme?.palette?.themePrimary}><Anchor href="https://github.com/palloncino" text="Github"/></SpecialWordStyle>
+						</Text>
+						<Text variant={textSize}>
 							palloncino
-							</Text>
-						</TextContainerStyle>
-					</StyledParagraph2>
+						</Text>
+					</TextContainerStyle>
+				</StyledParagraph2>
 
-					<StyledParagraph2
-						isMobile={isMobile}
-						tabIndex={1}
-						onKeyPress={(e: any) => e.charCode === Keyboard.Enter && handleRedirect('instagram.com/antonio_guiotto')}>
-						<IconContainer>
-							<img style={imgStyle} src={InstagramSvg} alt="Instagram logo"/>
-						</IconContainer>
-						<TextContainerStyle>
-							<Text variant={isMobile ? 'medium' : 'xLarge'}>
-								<SpecialWordStyle color={theme?.palette?.themePrimary}><Anchor href="https://instagram.com/antonio_guiotto" text="Instagram"/></SpecialWordStyle>
-							</Text>
-							<Text variant={textSize}>
+				<StyledParagraph2
+					isMobile={isMobile}
+					tabIndex={1}
+					onKeyPress={(e: any) => e.charCode === Keyboard.Enter && handleRedirect('instagram.com/antonio_guiotto')}>
+					<IconContainer>
+						<img style={imgStyle} src={InstagramSvg} alt="Instagram logo"/>
+					</IconContainer>
+					<TextContainerStyle>
+						<Text variant={isMobile ? 'medium' : 'xLarge'}>
+							<SpecialWordStyle color={theme?.palette?.themePrimary}><Anchor href="https://instagram.com/antonio_guiotto" text="Instagram"/></SpecialWordStyle>
+						</Text>
+						<Text variant={textSize}>
 								antonio_guiotto
-							</Text>
-						</TextContainerStyle>
-					</StyledParagraph2>
+						</Text>
+					</TextContainerStyle>
+				</StyledParagraph2>
 
-					<StyledParagraph2
-						isMobile={isMobile}
-						tabIndex={1}
-						onKeyPress={() => handleCopyToClipboard('Toni#2583')}>
-						<IconContainer>
-							<img style={imgStyle} src={DiscordSvg} alt="Discord logo"/>
-						</IconContainer>
-						<TextContainerStyle>
-							<Text variant={isMobile ? 'medium' : 'xLarge'}>
-								<SpecialWordStyle color={theme?.palette?.themePrimary}>Discord</SpecialWordStyle>
-							</Text>
-							<Text variant={textSize}>
+				<StyledParagraph2
+					isMobile={isMobile}
+					tabIndex={1}
+					onKeyPress={() => handleCopyToClipboard('Toni#2583')}>
+					<IconContainer>
+						<img style={imgStyle} src={DiscordSvg} alt="Discord logo"/>
+					</IconContainer>
+					<TextContainerStyle>
+						<Text variant={isMobile ? 'medium' : 'xLarge'}>
+							<SpecialWordStyle color={theme?.palette?.themePrimary}>Discord</SpecialWordStyle>
+						</Text>
+						<Text variant={textSize}>
 							Toni#2583
-							</Text>
-						</TextContainerStyle>
-					</StyledParagraph2>
+						</Text>
+					</TextContainerStyle>
+				</StyledParagraph2>
 
-					<StyledParagraph2
-						isMobile={isMobile}
-						tabIndex={1}
-						onKeyPress={(e: any) => e.charCode === Keyboard.Enter && handleRedirect('www.youtube.com/channel/UC31Gz5YZuH-J5zuz5hZjzgA')}>
-						<IconContainer>
-							<img style={imgStyle} src={ytSvg} alt="Youtube"/>
-						</IconContainer>
-						<TextContainerStyle>
-							<Text variant={isMobile ? 'medium' : 'xLarge'}>
-								<SpecialWordStyle color={theme?.palette?.themePrimary}><Anchor href="https://www.youtube.com/channel/UC31Gz5YZuH-J5zuz5hZjzgA" text="Youtube"/></SpecialWordStyle>
-							</Text>
-							<Text variant={textSize}>
+				<StyledParagraph2
+					isMobile={isMobile}
+					tabIndex={1}
+					onKeyPress={(e: any) => e.charCode === Keyboard.Enter && handleRedirect('www.youtube.com/channel/UC31Gz5YZuH-J5zuz5hZjzgA')}>
+					<IconContainer>
+						<img style={imgStyle} src={ytSvg} alt="Youtube"/>
+					</IconContainer>
+					<TextContainerStyle>
+						<Text variant={isMobile ? 'medium' : 'xLarge'}>
+							<SpecialWordStyle color={theme?.palette?.themePrimary}><Anchor href="https://www.youtube.com/channel/UC31Gz5YZuH-J5zuz5hZjzgA" text="Youtube"/></SpecialWordStyle>
+						</Text>
+						<Text variant={textSize}>
 							Antonio Guiotto
-							</Text>
-						</TextContainerStyle>
-					</StyledParagraph2>
+						</Text>
+					</TextContainerStyle>
+				</StyledParagraph2>
 
-					<StyledParagraph2
-						isMobile={isMobile}
-						tabIndex={1}
-						onKeyPress={(e: any) => e.charCode === Keyboard.Enter && handleRedirect('wa.me/00393474943221')}>
-						<IconContainer>
-							<img style={imgStyle} src={WhatsappSvg} alt="WhatsApp logo"/>
-						</IconContainer>
-						<TextContainerStyle>
-							<Text variant={isMobile ? 'medium' : 'xLarge'}>
-								<SpecialWordStyle color={theme?.palette?.themePrimary}><Anchor href="https://wa.me/00393474943221" text="WhatsApp"/></SpecialWordStyle>
-							</Text>
-							<Text variant={textSize}>
+				<StyledParagraph2
+					isMobile={isMobile}
+					tabIndex={1}
+					onKeyPress={(e: any) => e.charCode === Keyboard.Enter && handleRedirect('wa.me/00393474943221')}>
+					<IconContainer>
+						<img style={imgStyle} src={WhatsappSvg} alt="WhatsApp logo"/>
+					</IconContainer>
+					<TextContainerStyle>
+						<Text variant={isMobile ? 'medium' : 'xLarge'}>
+							<SpecialWordStyle color={theme?.palette?.themePrimary}><Anchor href="https://wa.me/00393474943221" text="WhatsApp"/></SpecialWordStyle>
+						</Text>
+						<Text variant={textSize}>
 							+39 3474943221
-							</Text>
-						</TextContainerStyle>
-					</StyledParagraph2>
+						</Text>
+					</TextContainerStyle>
+				</StyledParagraph2>
 
-				</StyledArticlesGrid>
-			</StyledSectionWhite>
-			<br />
+			</StyledArticlesGrid>
 		</>
 	);
 
@@ -186,13 +197,26 @@ const Index = ({theme}: IApplicationProps) => {
 						subHeadline={''}
 					/>
 				</SectionMargin>
-				{customAlert && (
-					<div style={{background: '#0003', position: 'absolute', bottom: 0, height: '100px', width: '200px'}}>
-						<Text>
-							{customAlert}
-						</Text>
-					</div>
-				)}
+				<div style={{
+					boxSizing: 'border-box',
+					display: 'flex',
+					justifyContent: 'flex-start',
+					alignItems: 'flex-start',
+					background: '#0001',
+					position: 'absolute',
+					bottom: 0,
+					height: customAlert ? '10%' : 0,
+					transition: '.5s',
+					width: '100%',
+					maxWidth: '400px',
+					padding: customAlert ? '1rem' : 0,
+					borderTopLeftRadius: '1rem',
+					borderTopRightRadius: '1rem',
+				}}>
+					<SpecialWordStyle>
+						{customAlert}
+					</SpecialWordStyle>
+				</div>
 				{errorMessage ? errorMessageView() : contentView()}
 			</StylePageContentContainer>
 		</>

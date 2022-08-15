@@ -20,6 +20,7 @@
     "no-trailing-spaces": "warn",
     "indent": "warn",
     "capitalized-comments": "off",
-    "object-curly-spacing": "warn"
+    "object-curly-spacing": "warn",
+    "no-promise-executor-return": "off"
   }
 }
