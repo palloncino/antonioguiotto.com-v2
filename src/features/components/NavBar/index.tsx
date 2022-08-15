@@ -38,7 +38,7 @@ export const NavBar = ({appConfig}: IFramedChildComponentProps) => {
 					justifyContent: 'center',
 					padding: '0rem',
 					height: '32px',
-					width: '260px',
+					width: isMobile ? 'auto' : '260px',
 				}} tabIndex={1} onKeyPress={e => e.charCode === 13 && handleChangedDropdown({} as FormEvent<HTMLDivElement>, {key: '/', text: ''})}>
 					<StyledNavBarBox>
 						<img src={logo} alt={'guiotto\'s company logo'} style={{...logoStyle}} />

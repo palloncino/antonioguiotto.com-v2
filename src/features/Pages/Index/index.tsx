@@ -203,7 +203,7 @@ const Index = ({theme}: IApplicationProps) => {
 					justifyContent: 'flex-start',
 					alignItems: 'flex-start',
 					background: '#0001',
-					position: 'absolute',
+					position: 'fixed',
 					bottom: 0,
 					height: customAlert ? '10%' : 0,
 					transition: '.5s',
