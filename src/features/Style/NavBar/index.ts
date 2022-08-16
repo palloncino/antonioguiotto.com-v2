@@ -1,9 +1,9 @@
 import {IDropdownStyles, IStackTokens} from '@fluentui/react';
 import styled from 'styled-components';
 
-const NavBarWrapper = styled.div`
+const NavBarWrapper = styled.div<{isMobile?: boolean;}>`
 		box-sizing: border-box;
-		height: 80px;
+		height: ${({isMobile}) => isMobile ? '60px' : '80px'};
 		width: 100%;
 		display: flex;
 		align-items: center;
@@ -17,13 +17,13 @@ const StyledNavBarBox = styled.div`
 		align-items: center;
 `;
 
-const NavBarContentContainer = styled.div`
+const NavBarContentContainer = styled.div<{isMobile?: boolean;}>`
 	height: 100%;
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 0 2rem;
+	padding: ${({isMobile}) => isMobile ? '0 1rem' : '0 2rem'};
 `;
 
 const dropdownStyles: Partial<IDropdownStyles> = {

@@ -1,12 +1,6 @@
 {
   "views": [
     {
-      "folderName": "CV",
-      "name": "CV",
-      "label": "CV",
-      "url": "/cv"  
-    },
-    {
       "folderName": "Index",
       "name": "index",
       "label": "Index",

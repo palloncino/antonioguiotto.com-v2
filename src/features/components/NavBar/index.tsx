@@ -18,19 +18,14 @@ export const NavBar = ({appConfig}: IFramedChildComponentProps) => {
 	const [selectedKey, setSelectedKey] = useState(extractModuleFromUrl(pathname));
 	const options: IDropdownOption[] = viewsToDropdownOptions(appConfig?.views || []);
 	const handleChangedDropdown = (_: FormEvent<HTMLDivElement>, module: IDropdownOption | undefined): void => {
-		console.log({_, module});
 		const selectedItemKey = `${module?.key}` || '';
 		setSelectedKey(selectedItemKey);
 		navigate(selectedItemKey);
 	};
 
-	useEffect(() => {
-		console.log(pathname);
-	}, [pathname]);
-
 	return (
-		<NavBarWrapper>
-			<NavBarContentContainer style={{justifyContent: 'space-between'}}>
+		<NavBarWrapper isMobile={isMobile}>
+			<NavBarContentContainer isMobile={isMobile}>
 				<Stack style={{
 					display: 'flex',
 					flexDirection: 'row',
@@ -53,7 +48,7 @@ export const NavBar = ({appConfig}: IFramedChildComponentProps) => {
 						</StyledNavBarBox>
 					)}
 				</Stack>
-				{window.innerWidth > 400 && pathname === '/cv' && (
+				{!isMobile && pathname === '/cv' && (
 					<Stack>
 						<a style={{transform: 'scale(1.2)', textDecoration: 'none', color: '#e0f'}} tabIndex={1} href="" download target="_blank">download cv</a>
 					</Stack>

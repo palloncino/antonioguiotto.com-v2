@@ -1,7 +1,6 @@
 import {IFontStyles, Text} from '@fluentui/react';
 import {throttle} from 'lodash';
 import {useEffect, useState} from 'react';
-import {useNavigation} from '../../../hooks';
 import {useDevice} from '../../../hooks/useDevice';
 import bg from '../../../media/svgs/bg2.svg';
 import DiscordSvg from '../../../media/svgs/discord.svg';
@@ -15,7 +14,7 @@ import Anchor from '../../components/Anchor';
 import ErrorView from '../../components/ErrorView';
 import HeroHeader from '../../components/HeroHeader';
 import {
-	IconContainer, SectionMargin, SpecialWordStyle, StyledArticlesGrid, StyledParagraph2, StyledSectionWhite, StylePageContentContainer, TextContainerStyle,
+	IconContainer, SectionMargin, SpecialWordStyle, StyledArticlesGrid, StyledParagraph2, StylePageContentContainer, TextContainerStyle,
 } from '../../Style';
 
 const Index = ({theme}: IApplicationProps) => {
@@ -28,6 +27,7 @@ const Index = ({theme}: IApplicationProps) => {
 	const {isMobile} = useDevice();
 
 	const useCustomAlert = async (text: string, ms: number = 2000) => {
+		setCustomAlert(undefined);
 		setCustomAlert(text);
 		await delay(ms);
 		setCustomAlert(undefined);
@@ -78,12 +78,22 @@ const Index = ({theme}: IApplicationProps) => {
 
 	const contentView = () => (
 		<>
-			<StyledArticlesGrid rowGap={isMobile ? '.2rem' : '1rem'} gridTemplateColumns={'repeat(auto-fit, minmax(48%, 1fr))'}>
+			{console.log({isMobile})}
+			<StyledArticlesGrid isMobile={isMobile} style={isMobile ? {
+				display: 'flex',
+				flexWrap: 'wrap',
+			} : {
+				display: 'grid',
+				gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
+				columnGap: '1rem',
+				rowGap: '1rem',
+			}}>
 
 				<StyledParagraph2
 					isMobile={isMobile}
 					tabIndex={1}
-					onKeyPress={() => handleCopyToClipboard('powerhydratoni@gmail.com')}>
+					onKeyPress={() => handleCopyToClipboard('powerhydratoni@gmail.com')}
+					onClick={() => handleCopyToClipboard('powerhydratoni@gmail.com')}>
 					<IconContainer>
 						<img style={imgStyle} src={GmailSvg} alt="Gmail logo"/>
 					</IconContainer>
@@ -100,7 +110,8 @@ const Index = ({theme}: IApplicationProps) => {
 				<StyledParagraph2
 					isMobile={isMobile}
 					tabIndex={1}
-					onKeyPress={(e: any) => e.charCode === Keyboard.Enter && handleRedirect('github.com/palloncino')}>
+					onKeyPress={(e: any) => e.charCode === Keyboard.Enter && handleRedirect('github.com/palloncino')}
+					onClick={() => handleRedirect('github.com/palloncino')}>
 					<IconContainer>
 						<img style={imgStyle} src={GithubSvg} alt="Github logo"/>
 					</IconContainer>
@@ -117,7 +128,8 @@ const Index = ({theme}: IApplicationProps) => {
 				<StyledParagraph2
 					isMobile={isMobile}
 					tabIndex={1}
-					onKeyPress={(e: any) => e.charCode === Keyboard.Enter && handleRedirect('instagram.com/antonio_guiotto')}>
+					onKeyPress={(e: any) => e.charCode === Keyboard.Enter && handleRedirect('instagram.com/antonio_guiotto')}
+					onClick={() => handleRedirect('instagram.com/antonio_guiotto')}>
 					<IconContainer>
 						<img style={imgStyle} src={InstagramSvg} alt="Instagram logo"/>
 					</IconContainer>
@@ -134,7 +146,8 @@ const Index = ({theme}: IApplicationProps) => {
 				<StyledParagraph2
 					isMobile={isMobile}
 					tabIndex={1}
-					onKeyPress={() => handleCopyToClipboard('Toni#2583')}>
+					onKeyPress={() => handleCopyToClipboard('Toni#2583')}
+					onClick={() => handleCopyToClipboard('Toni#2583')}>
 					<IconContainer>
 						<img style={imgStyle} src={DiscordSvg} alt="Discord logo"/>
 					</IconContainer>
@@ -151,7 +164,8 @@ const Index = ({theme}: IApplicationProps) => {
 				<StyledParagraph2
 					isMobile={isMobile}
 					tabIndex={1}
-					onKeyPress={(e: any) => e.charCode === Keyboard.Enter && handleRedirect('www.youtube.com/channel/UC31Gz5YZuH-J5zuz5hZjzgA')}>
+					onKeyPress={(e: any) => e.charCode === Keyboard.Enter && handleRedirect('www.youtube.com/channel/UC31Gz5YZuH-J5zuz5hZjzgA')}
+					onClick={() => handleRedirect('www.youtube.com/channel/UC31Gz5YZuH-J5zuz5hZjzgA')}>
 					<IconContainer>
 						<img style={imgStyle} src={ytSvg} alt="Youtube"/>
 					</IconContainer>
@@ -168,7 +182,8 @@ const Index = ({theme}: IApplicationProps) => {
 				<StyledParagraph2
 					isMobile={isMobile}
 					tabIndex={1}
-					onKeyPress={(e: any) => e.charCode === Keyboard.Enter && handleRedirect('wa.me/00393474943221')}>
+					onKeyPress={(e: any) => e.charCode === Keyboard.Enter && handleRedirect('wa.me/00393474943221')}
+					onClick={() => handleRedirect('wa.me/00393474943221')}>
 					<IconContainer>
 						<img style={imgStyle} src={WhatsappSvg} alt="WhatsApp logo"/>
 					</IconContainer>
@@ -177,7 +192,7 @@ const Index = ({theme}: IApplicationProps) => {
 							<SpecialWordStyle color={theme?.palette?.themePrimary}><Anchor href="https://wa.me/00393474943221" text="WhatsApp"/></SpecialWordStyle>
 						</Text>
 						<Text variant={textSize}>
-							+39 3474943221
+							Chat now
 						</Text>
 					</TextContainerStyle>
 				</StyledParagraph2>
@@ -193,8 +208,8 @@ const Index = ({theme}: IApplicationProps) => {
 					<HeroHeader
 						color={theme?.palette?.white}
 						bgImage={bg}
-						headline={'Lobby'}
-						subHeadline={''}
+						headline={'Homepage'}
+						subHeadline={'Browse through useful links'}
 					/>
 				</SectionMargin>
 				<div style={{
@@ -202,7 +217,7 @@ const Index = ({theme}: IApplicationProps) => {
 					display: 'flex',
 					justifyContent: 'flex-start',
 					alignItems: 'flex-start',
-					background: '#0001',
+					background: '#000',
 					position: 'fixed',
 					bottom: 0,
 					height: customAlert ? '10%' : 0,

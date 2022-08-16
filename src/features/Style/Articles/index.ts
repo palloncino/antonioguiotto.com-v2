@@ -56,12 +56,7 @@ const WeatherCardProp = styled.div`
 	margin-bottom: .5rem;
 `;
 
-const StyledArticlesGrid = styled.div<{gridTemplateColumns?: string | string[], columnGap?: string, rowGap?: string}>`
-	display: grid;
-	grid-template-columns: ${props => props.gridTemplateColumns || 'repeat(auto-fit, minmax(400px, 1fr))'};
-	column-gap: ${props => props.columnGap || '1rem'};
-	row-gap: ${props => props.rowGap || '1rem'};
-`;
+const StyledArticlesGrid = styled.div<{isMobile?: boolean; gridTemplateColumns?: string | string[], columnGap?: string, rowGap?: string}>``;
 
 const StyledArticleCardContainer = styled.div<{key?: string, color?: string, bgColor?: string}>`
 	background: ${props => props.bgColor};
@@ -92,6 +87,7 @@ const StyledArticlesStack = styled(Stack)`
 `;
 
 const StyledParagraph2 = styled.div<{isMobile?: boolean}>`
+	width: 100%;
 	box-sizing: border-box;
 	border-radius: .2rem;
 	display: flex;
