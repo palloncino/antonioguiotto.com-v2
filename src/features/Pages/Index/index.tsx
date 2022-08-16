@@ -9,12 +9,14 @@ import GmailSvg from '../../../media/svgs/gmail.svg';
 import InstagramSvg from '../../../media/svgs/instagram.svg';
 import WhatsappSvg from '../../../media/svgs/whatsapp.svg';
 import ytSvg from '../../../media/svgs/yt.svg';
+import docSvg from '../../../media/svgs/doc.svg';
+import linkedinSvg from '../../../media/svgs/linkedin.svg';
 import {IApplicationProps} from '../../../types';
 import Anchor from '../../components/Anchor';
 import ErrorView from '../../components/ErrorView';
 import HeroHeader from '../../components/HeroHeader';
 import {
-	IconContainer, SectionMargin, SpecialWordStyle, StyledArticlesGrid, StyledParagraph2, StylePageContentContainer, TextContainerStyle,
+	IconContainer, SectionMargin, SpecialWordStyle, StyledArticlesGrid, StyledHeadOfSection, StyledParagraph2, StylePageContentContainer, TextContainerStyle,
 } from '../../Style';
 
 const Index = ({theme}: IApplicationProps) => {
@@ -27,23 +29,23 @@ const Index = ({theme}: IApplicationProps) => {
 	const {isMobile} = useDevice();
 
 	const useCustomAlert = async (text: string, ms: number = 2000) => {
-		setCustomAlert(undefined);
-		setCustomAlert(text);
-		await delay(ms);
-		setCustomAlert(undefined);
-
-		function delay(ms: number) {
-			return new Promise(resolve => setTimeout(resolve, ms));
+		if (text === customAlert) {
+			return;
 		}
+
+		setCustomAlert(text);
+		await new Promise(resolve => setTimeout(resolve, ms));
+		setCustomAlert(undefined);
 	};
 
 	useEffect(() => {
 		addEventListener('resize', throttle(handleResize, 500));
 		dispatchEvent(new CustomEvent('resize'));
+		console.log(1);
 	});
 
 	useEffect(() => {
-		useCustomAlert('You can use TAB to navigate.', 4000);
+		useCustomAlert(isMobile ? '✔ Mobile Friendly' : 'You can use TAB(↹) and Shift+TAB(⇧ + ↹) to navigate.', 6000);
 	}, []);
 
 	const handleResize = (event: any) => {
@@ -60,11 +62,10 @@ const Index = ({theme}: IApplicationProps) => {
 		}
 	};
 
-	const imgStyle = {maxWidth: isMobile ? '40px' : '80px', maxHeight: isMobile ? '40px' : '80px', cursor: 'grab'};
+	const imgStyle = {maxWidth: isMobile ? '40px' : '80px', maxHeight: isMobile ? '40px' : '40px', cursor: 'grab'};
 
 	const handleCopyToClipboard = (text: string) => {
-		setCustomAlert(`✔ Copied to clipboard: ${text}`);
-		setTimeout(() => setCustomAlert(undefined), 4000);
+		useCustomAlert(`✔ Copied to clipboard: ${text}`);
 		navigator.clipboard.writeText(text);
 	};
 
@@ -77,14 +78,20 @@ const Index = ({theme}: IApplicationProps) => {
 	}
 
 	const contentView = () => (
-		<>
-			{console.log({isMobile})}
+		<div style={{position: 'relative'}}>
+
+			<StyledHeadOfSection id="linkup" isMobile={isMobile}>
+				<Text variant="xxLargePlus">Link up</Text>
+			</StyledHeadOfSection>
+
 			<StyledArticlesGrid isMobile={isMobile} style={isMobile ? {
 				display: 'flex',
 				flexWrap: 'wrap',
+				rowGap: '.2rem',
+				padding: '0 .2rem',
 			} : {
 				display: 'grid',
-				gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
+				gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
 				columnGap: '1rem',
 				rowGap: '1rem',
 			}}>
@@ -197,14 +204,52 @@ const Index = ({theme}: IApplicationProps) => {
 					</TextContainerStyle>
 				</StyledParagraph2>
 
+				<StyledParagraph2
+					isMobile={isMobile}
+					tabIndex={1}
+					// onKeyPress={() => handleCopyToClipboard('powerhydratoni@gmail.com')}
+					// onClick={() => handleCopyToClipboard('powerhydratoni@gmail.com')}
+				>
+					<IconContainer>
+						<img style={imgStyle} src={docSvg} alt="Document icon"/>
+					</IconContainer>
+					<TextContainerStyle>
+						<Text variant={isMobile ? 'medium' : 'xLarge'}>
+							<SpecialWordStyle color={theme?.palette?.themePrimary}>Curriculum Vitae</SpecialWordStyle>
+						</Text>
+						<Text variant={textSize}>
+								download PDF
+						</Text>
+					</TextContainerStyle>
+				</StyledParagraph2>
+
+				<StyledParagraph2
+					isMobile={isMobile}
+					tabIndex={1}
+					// onKeyPress={() => handleCopyToClipboard('powerhydratoni@gmail.com')}
+					// onClick={() => handleCopyToClipboard('powerhydratoni@gmail.com')}
+				>
+					<IconContainer>
+						<img style={imgStyle} src={linkedinSvg} alt="Linkedin icon"/>
+					</IconContainer>
+					<TextContainerStyle>
+						<Text variant={isMobile ? 'medium' : 'xLarge'}>
+							<SpecialWordStyle color={theme?.palette?.themePrimary}>Linkedin</SpecialWordStyle>
+						</Text>
+						<Text variant={textSize}>
+								Antonio Guiotto
+						</Text>
+					</TextContainerStyle>
+				</StyledParagraph2>
+
 			</StyledArticlesGrid>
-		</>
+		</div>
 	);
 
 	return (
 		<>
 			<StylePageContentContainer>
-				<SectionMargin mb={isMobile ? '0rem' : '2rem'} >
+				<SectionMargin mb={isMobile ? '0' : '0'} >
 					<HeroHeader
 						color={theme?.palette?.white}
 						bgImage={bg}

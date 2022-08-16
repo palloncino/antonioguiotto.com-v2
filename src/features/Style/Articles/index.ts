@@ -56,7 +56,18 @@ const WeatherCardProp = styled.div`
 	margin-bottom: .5rem;
 `;
 
-const StyledArticlesGrid = styled.div<{isMobile?: boolean; gridTemplateColumns?: string | string[], columnGap?: string, rowGap?: string}>``;
+const StyledArticlesGrid = styled.div<{isMobile?: boolean; gridTemplateColumns?: string | string[], columnGap?: string, rowGap?: string}>`
+	background: #3f237d;
+	padding: 1rem;
+	border-top-right-radius: 1rem;
+	border-bottom-left-radius: 1rem;
+	border-bottom-right-radius: 1rem;
+
+	border-top: .5rem solid #0002;
+	border-bottom: .5rem solid #0004;
+	border-left: .5rem solid #0002;
+	border-right: .5rem solid #0004;
+`;
 
 const StyledArticleCardContainer = styled.div<{key?: string, color?: string, bgColor?: string}>`
 	background: ${props => props.bgColor};
@@ -86,6 +97,29 @@ const StyledArticlesStack = styled(Stack)`
 	max-width: 800px;
 `;
 
+const StyledHeadOfSection = styled.div<{isMobile?: boolean;}>`
+	${({isMobile}) => isMobile ? `
+		position: absolute;
+		top: -2.4rem;
+		text-decoration: underline;
+		padding: 0 2rem;
+	` : `
+		border-top-right-radius: 1rem;
+		border-top-left-radius: 1rem;
+		border-top: .5rem solid #0002;
+		border-left: .5rem solid #0002;
+		border-right: .5rem solid #0004;
+		position: absolute;
+		left: 0;
+		text-decoration: underline;
+		line-height: 3rem;
+		top: -71px;
+		background: #3F237D;
+		padding: 0.5rem 2rem;
+		z-index: 1;
+	`}
+`;
+
 const StyledParagraph2 = styled.div<{isMobile?: boolean}>`
 	width: 100%;
 	box-sizing: border-box;
@@ -95,21 +129,27 @@ const StyledParagraph2 = styled.div<{isMobile?: boolean}>`
 	justify-content: flex-start;
 	background: rgba(0,0,0,0.1);
 	transition: .2s;
-    transition-delay: 0s;
+	background: #0002;
+	border: 2px solid #0002;
+	overflow: hidden;
 	&:hover {
-		// transform: scale(1.05);
 		cursor: pointer;
     }
-	&:focus {
-		background: #111;
-		transform: scale(1.05);
-	}
 	${({isMobile}) => isMobile ? `
-	height: 80px;
+	height: 60px;
 	padding: .5rem;
+	border: none;
+	border-radius: .2rem;
+	&:focus {
+		background: #000;
+	}
 	` : `
-	height auto;
+	height 80px;
 	padding: 1rem;
+	&:focus {
+		transform: scale(1.05);
+		background: #000;
+	}
 	`}
 `;
 
@@ -118,7 +158,7 @@ const IconContainer = styled.span<{ color?: string }>`
 	flex: 1;
     display: flex; 
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     
     &:last-child {
         margin-right: 0;
@@ -126,10 +166,13 @@ const IconContainer = styled.span<{ color?: string }>`
 `;
 
 const TextContainerStyle = styled.div`
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	flex: 4;
+	flex: 5;
 	// justify-content: flex-start;
 	// align-items: flex-start;
 `;
@@ -161,4 +204,5 @@ export {
 	FlexContainerCenter,
 	IconContainer,
 	TextContainerStyle,
+	StyledHeadOfSection,
 };

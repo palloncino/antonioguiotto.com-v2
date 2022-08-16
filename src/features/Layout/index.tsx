@@ -8,10 +8,16 @@ export const framedView = (view: FolderNameType, props?: IFramedChildComponentPr
 	const ComponentView = lazy(() => import(`../Pages/${view}`));
 
 	return (
-		<ViewWrapper>
+		<ViewWrapper id="ViewWrapper">
 			<NavBar {...props} />
 			<ContentWrapper>
-				<Suspense fallback={<Spinner size={SpinnerSize.large} />}>
+				<Suspense fallback={<Spinner styles={
+					{
+						circle: {
+							border: '2px solid #000',
+						},
+					}
+				} size={SpinnerSize.large} />}>
 					<ComponentView {...props} />
 				</Suspense>
 			</ContentWrapper>

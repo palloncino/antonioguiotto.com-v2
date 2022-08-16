@@ -3,10 +3,18 @@ import styled from 'styled-components';
 
 const NavBarWrapper = styled.div<{isMobile?: boolean;}>`
 		box-sizing: border-box;
-		height: ${({isMobile}) => isMobile ? '60px' : '80px'};
 		width: 100%;
 		display: flex;
 		align-items: center;
+		height: 60px;
+		${({isMobile}) => isMobile ? `
+		background: #000;
+		margin-bottom: 0;
+		` : `
+		background: #000;
+		border-bottom-left-radius: 0.2rem;
+		border-bottom-right-radius: 0.2rem;
+		`};
 `;
 
 const StyledNavBarBox = styled.div`
