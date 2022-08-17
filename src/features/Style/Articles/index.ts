@@ -56,19 +56,6 @@ const WeatherCardProp = styled.div`
 	margin-bottom: .5rem;
 `;
 
-const StyledArticlesGrid = styled.div<{isMobile?: boolean; gridTemplateColumns?: string | string[], columnGap?: string, rowGap?: string}>`
-	background: #3f237d;
-	padding: 1rem;
-	border-top-right-radius: 1rem;
-	border-bottom-left-radius: 1rem;
-	border-bottom-right-radius: 1rem;
-
-	border-top: .5rem solid #0002;
-	border-bottom: .5rem solid #0004;
-	border-left: .5rem solid #0002;
-	border-right: .5rem solid #0004;
-`;
-
 const StyledArticleCardContainer = styled.div<{key?: string, color?: string, bgColor?: string}>`
 	background: ${props => props.bgColor};
 	color: ${props => props.color};
@@ -103,20 +90,30 @@ const StyledHeadOfSection = styled.div<{isMobile?: boolean;}>`
 		top: -2.4rem;
 		text-decoration: underline;
 		padding: 0 2rem;
+		color: unset;
 	` : `
-		border-top-right-radius: 1rem;
-		border-top-left-radius: 1rem;
-		border-top: .5rem solid #0002;
-		border-left: .5rem solid #0002;
-		border-right: .5rem solid #0004;
+		color: #111;
+		border-color: #0002 #0006 #0006 #0002;
 		position: absolute;
 		left: 0;
 		text-decoration: underline;
 		line-height: 3rem;
-		top: -71px;
-		background: #3F237D;
+		top: -50px;
 		padding: 0.5rem 2rem;
 		z-index: 1;
+	`}
+`;
+
+const StyledArticlesGrid = styled.div<{isMobile?: boolean; gridTemplateColumns?: string | string[], columnGap?: string, rowGap?: string}>`
+	background: #3f237d;
+	padding: 1rem;
+	border-radius: .2rem;
+	border-top: .4rem solid #0002;
+	border-bottom: .4rem solid #0004;
+	border-left: .4rem solid #0002;
+	border-right: .4rem solid #0004;
+	${({isMobile}) => isMobile ? `
+	` : `;
 	`}
 `;
 
@@ -144,7 +141,7 @@ const StyledParagraph2 = styled.div<{isMobile?: boolean}>`
 		background: #000;
 	}
 	` : `
-	height 80px;
+	height 40px;
 	padding: 1rem;
 	&:focus {
 		transform: scale(1.05);
@@ -155,7 +152,6 @@ const StyledParagraph2 = styled.div<{isMobile?: boolean}>`
 
 const IconContainer = styled.span<{ color?: string }>`
     margin-right: 1rem;
-	flex: 1;
     display: flex; 
     align-items: center;
     justify-content: flex-end;
@@ -165,24 +161,29 @@ const IconContainer = styled.span<{ color?: string }>`
      }
 `;
 
-const TextContainerStyle = styled.div`
+const TextContainerStyle = styled.div<{isMobile?: boolean;}>`
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	width: 100%;
 	display: flex;
-	flex-direction: column;
-	flex: 5;
-	// justify-content: flex-start;
-	// align-items: flex-start;
+	${({isMobile}) => isMobile ? `
+	flex-direction: row;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	` : `
+	flex-direction: row;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	`}
 `;
 
 const StyledSectionWhiteCentered = styled(StyledSectionWhite)`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	// align-items: center;
-	// justify-content: center;
 `;
 
 export {

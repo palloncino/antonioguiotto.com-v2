@@ -62,7 +62,7 @@ const Index = ({theme}: IApplicationProps) => {
 		}
 	};
 
-	const imgStyle = {maxWidth: isMobile ? '40px' : '80px', maxHeight: isMobile ? '40px' : '40px', cursor: 'grab'};
+	const imgStyle = {maxWidth: isMobile ? '40px' : '30px', maxHeight: isMobile ? '40px' : '30px', cursor: 'grab'};
 
 	const handleCopyToClipboard = (text: string) => {
 		useCustomAlert(`✔ Copied to clipboard: ${text}`);
@@ -81,7 +81,7 @@ const Index = ({theme}: IApplicationProps) => {
 		<div style={{position: 'relative'}}>
 
 			<StyledHeadOfSection id="linkup" isMobile={isMobile}>
-				<Text variant="xxLargePlus">Link up</Text>
+				<Text variant="xxLargePlus" style ={{color: isMobile ? '' : '#111'}}>Link up</Text>
 			</StyledHeadOfSection>
 
 			<StyledArticlesGrid isMobile={isMobile} style={isMobile ? {
@@ -91,20 +91,20 @@ const Index = ({theme}: IApplicationProps) => {
 				padding: '0 .2rem',
 			} : {
 				display: 'grid',
-				gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-				columnGap: '1rem',
-				rowGap: '1rem',
+				gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
+				columnGap: '.5rem',
+				rowGap: '.5rem',
 			}}>
 
 				<StyledParagraph2
 					isMobile={isMobile}
 					tabIndex={1}
-					onKeyPress={() => handleCopyToClipboard('powerhydratoni@gmail.com')}
+					onKeyPress={(e: any) => e.charCode === Keyboard.Enter && handleCopyToClipboard('powerhydratoni@gmail.com')}
 					onClick={() => handleCopyToClipboard('powerhydratoni@gmail.com')}>
 					<IconContainer>
 						<img style={imgStyle} src={GmailSvg} alt="Gmail logo"/>
 					</IconContainer>
-					<TextContainerStyle>
+					<TextContainerStyle isMobile={isMobile}>
 						<Text variant={isMobile ? 'medium' : 'xLarge'}>
 							<SpecialWordStyle color={theme?.palette?.themePrimary}>Gmail</SpecialWordStyle>
 						</Text>
@@ -122,7 +122,7 @@ const Index = ({theme}: IApplicationProps) => {
 					<IconContainer>
 						<img style={imgStyle} src={GithubSvg} alt="Github logo"/>
 					</IconContainer>
-					<TextContainerStyle>
+					<TextContainerStyle isMobile={isMobile}>
 						<Text variant={isMobile ? 'medium' : 'xLarge'}>
 							<SpecialWordStyle color={theme?.palette?.themePrimary}><Anchor href="https://github.com/palloncino" text="Github"/></SpecialWordStyle>
 						</Text>
@@ -140,7 +140,7 @@ const Index = ({theme}: IApplicationProps) => {
 					<IconContainer>
 						<img style={imgStyle} src={InstagramSvg} alt="Instagram logo"/>
 					</IconContainer>
-					<TextContainerStyle>
+					<TextContainerStyle isMobile={isMobile}>
 						<Text variant={isMobile ? 'medium' : 'xLarge'}>
 							<SpecialWordStyle color={theme?.palette?.themePrimary}><Anchor href="https://instagram.com/antonio_guiotto" text="Instagram"/></SpecialWordStyle>
 						</Text>
@@ -153,12 +153,12 @@ const Index = ({theme}: IApplicationProps) => {
 				<StyledParagraph2
 					isMobile={isMobile}
 					tabIndex={1}
-					onKeyPress={() => handleCopyToClipboard('Toni#2583')}
+					onKeyPress={(e: any) => e.charCode === Keyboard.Enter && handleCopyToClipboard('Toni#2583')}
 					onClick={() => handleCopyToClipboard('Toni#2583')}>
 					<IconContainer>
 						<img style={imgStyle} src={DiscordSvg} alt="Discord logo"/>
 					</IconContainer>
-					<TextContainerStyle>
+					<TextContainerStyle isMobile={isMobile}>
 						<Text variant={isMobile ? 'medium' : 'xLarge'}>
 							<SpecialWordStyle color={theme?.palette?.themePrimary}>Discord</SpecialWordStyle>
 						</Text>
@@ -176,7 +176,7 @@ const Index = ({theme}: IApplicationProps) => {
 					<IconContainer>
 						<img style={imgStyle} src={ytSvg} alt="Youtube"/>
 					</IconContainer>
-					<TextContainerStyle>
+					<TextContainerStyle isMobile={isMobile}>
 						<Text variant={isMobile ? 'medium' : 'xLarge'}>
 							<SpecialWordStyle color={theme?.palette?.themePrimary}><Anchor href="https://www.youtube.com/channel/UC31Gz5YZuH-J5zuz5hZjzgA" text="Youtube"/></SpecialWordStyle>
 						</Text>
@@ -194,7 +194,7 @@ const Index = ({theme}: IApplicationProps) => {
 					<IconContainer>
 						<img style={imgStyle} src={WhatsappSvg} alt="WhatsApp logo"/>
 					</IconContainer>
-					<TextContainerStyle>
+					<TextContainerStyle isMobile={isMobile}>
 						<Text variant={isMobile ? 'medium' : 'xLarge'}>
 							<SpecialWordStyle color={theme?.palette?.themePrimary}><Anchor href="https://wa.me/00393474943221" text="WhatsApp"/></SpecialWordStyle>
 						</Text>
@@ -213,7 +213,7 @@ const Index = ({theme}: IApplicationProps) => {
 					<IconContainer>
 						<img style={imgStyle} src={docSvg} alt="Document icon"/>
 					</IconContainer>
-					<TextContainerStyle>
+					<TextContainerStyle isMobile={isMobile}>
 						<Text variant={isMobile ? 'medium' : 'xLarge'}>
 							<SpecialWordStyle color={theme?.palette?.themePrimary}>Curriculum Vitae</SpecialWordStyle>
 						</Text>
@@ -232,7 +232,7 @@ const Index = ({theme}: IApplicationProps) => {
 					<IconContainer>
 						<img style={imgStyle} src={linkedinSvg} alt="Linkedin icon"/>
 					</IconContainer>
-					<TextContainerStyle>
+					<TextContainerStyle isMobile={isMobile}>
 						<Text variant={isMobile ? 'medium' : 'xLarge'}>
 							<SpecialWordStyle color={theme?.palette?.themePrimary}>Linkedin</SpecialWordStyle>
 						</Text>
@@ -259,6 +259,7 @@ const Index = ({theme}: IApplicationProps) => {
 				</SectionMargin>
 				<div style={{
 					boxSizing: 'border-box',
+					zIndex: 200,
 					display: 'flex',
 					justifyContent: 'flex-start',
 					alignItems: 'flex-start',
