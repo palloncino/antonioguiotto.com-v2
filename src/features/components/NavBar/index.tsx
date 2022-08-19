@@ -26,22 +26,30 @@ export const NavBar = ({appConfig}: IFramedChildComponentProps) => {
 	return (
 		<NavBarWrapper isMobile={isMobile}>
 			<NavBarContentContainer isMobile={isMobile}>
-				<Stack style={{
-					display: 'flex',
-					flexDirection: 'row',
-					alignItems: 'center',
-					justifyContent: 'center',
-					padding: '0rem',
-					height: '32px',
-					width: isMobile ? 'auto' : '260px',
-				}} tabIndex={1} onKeyPress={e => e.charCode === 13 && handleChangedDropdown({} as FormEvent<HTMLDivElement>, {key: '/', text: ''})}>
+				<Stack
+					style={{
+						display: 'flex',
+						flexDirection: 'row',
+						alignItems: 'center',
+						justifyContent: 'center',
+						padding: '0rem',
+						height: '32px',
+						width: isMobile ? 'auto' : '260px',
+						background: '#323130',
+						borderRadius: '0.2rem',
+						cursor: 'pointer',
+					}}
+					tabIndex={1}
+					onKeyPress={e => e.charCode === 13 && handleChangedDropdown({} as FormEvent<HTMLDivElement>, {key: '/', text: ''})}
+					onClick={() => handleChangedDropdown({} as FormEvent<HTMLDivElement>, {key: '/', text: ''})}
+				>
 					<StyledNavBarBox>
 						<img src={logo} alt={'guiotto\'s company logo'} style={{...logoStyle}} />
 					</StyledNavBarBox>
 					{!isMobile && (
 						<StyledNavBarBox>
 							<Text variant={'large'} nowrap block>
-								<SpecialWordStyle>
+								<SpecialWordStyle color={'#fff'}>
 									antonioguiotto.com
 								</SpecialWordStyle>
 							</Text>
@@ -50,7 +58,7 @@ export const NavBar = ({appConfig}: IFramedChildComponentProps) => {
 				</Stack>
 				{!isMobile && pathname === '/cv' && (
 					<Stack>
-						<a style={{transform: 'scale(1.2)', textDecoration: 'none', color: '#e0f'}} tabIndex={1} href="" download target="_blank">download cv</a>
+						<a style={{transform: 'scale(1.2)', textDecoration: 'none'}} tabIndex={1} href="" download target="_blank">download cv</a>
 					</Stack>
 				)}
 				<StyledNavBarBox>

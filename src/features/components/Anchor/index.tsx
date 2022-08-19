@@ -12,7 +12,7 @@ const Anchor = ({color, href, text, download, target, theme}: IAnchorProps) => {
 	const {palette: {themePrimary}} = useTheme();
 	return (
 		<StyledAnchor color={color || themePrimary} href={href} download={download} target={target}>
-			<SpecialWordStyle color={theme?.palette?.themePrimary}>
+			<SpecialWordStyle color={theme?.palette?.themePrimary || '#323130'}>
 				{text}
 			</SpecialWordStyle>
 		</StyledAnchor>

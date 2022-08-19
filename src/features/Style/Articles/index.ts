@@ -90,9 +90,7 @@ const StyledHeadOfSection = styled.div<{isMobile?: boolean;}>`
 		top: -2.4rem;
 		text-decoration: underline;
 		padding: 0 2rem;
-		color: unset;
 	` : `
-		color: #111;
 		border-color: #0002 #0006 #0006 #0002;
 		position: absolute;
 		left: 0;
@@ -105,13 +103,12 @@ const StyledHeadOfSection = styled.div<{isMobile?: boolean;}>`
 `;
 
 const StyledArticlesGrid = styled.div<{isMobile?: boolean; gridTemplateColumns?: string | string[], columnGap?: string, rowGap?: string}>`
-	background: #3f237d;
-	padding: 1rem;
-	border-radius: .2rem;
-	border-top: .4rem solid #0002;
-	border-bottom: .4rem solid #0004;
-	border-left: .4rem solid #0002;
-	border-right: .4rem solid #0004;
+	// padding: 1rem;
+	// border-radius: .2rem;
+	// border-top: .4rem solid #0002;
+	// border-bottom: .4rem solid #0004;
+	// border-left: .4rem solid #0002;
+	// border-right: .4rem solid #0004;
 	${({isMobile}) => isMobile ? `
 	` : `;
 	`}
@@ -124,29 +121,31 @@ const StyledParagraph2 = styled.div<{isMobile?: boolean}>`
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
-	background: rgba(0,0,0,0.1);
+	background: #0002;
 	transition: .2s;
 	background: #0002;
-	border: 2px solid #0002;
+	border: .05rem solid #0002;
+	border-bottom: .1rem solid #0002;
 	overflow: hidden;
 	&:hover {
 		cursor: pointer;
     }
 	${({isMobile}) => isMobile ? `
-	height: 60px;
+	height: 40px;
 	padding: .5rem;
 	border: none;
 	border-radius: .2rem;
 	&:focus {
-		background: #000;
+		background: #0004;
 	}
 	` : `
 	height 40px;
-	padding: 1rem;
+	padding: 0 1rem;
 	&:focus {
-		transform: scale(1.05);
-		background: #000;
+		background: #0004;
+		border-bottom: .0rem solid #0002;
 	}
+	&:hover { background: #0004; }
 	`}
 `;
 
