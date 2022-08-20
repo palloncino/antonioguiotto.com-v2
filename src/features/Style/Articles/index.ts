@@ -1,69 +1,27 @@
-import {Stack} from '@fluentui/react';
 import styled from 'styled-components';
 
-const StyledParagraphHeader = styled.div`
-	margin-bottom: 1rem;
-`;
-
-const StyledParagraph = styled.div`
-	text-align: justify;
-  	line-height: 2.5rem;
-	display: flex;
-	align-items: center;
-`;
-
-const FlexContainerCenter = styled.div`
-	display: flex;
-	justify-content: center;
-	align-items: center;
-`;
-
-const StyledParagraphTitle = styled.div`
-	text-align: justify;
-  	margin-bottom: 1rem;
-	display: flex;
-	align-items: center;
-`;
-
-const StyledSectionWhite = styled.div`
-	// background: rgba(0,0,0,0.2);
-	padding: 1.2rem;
-	margin-bottom: 2rem;
-	border-radius: .2rem;
-	// box-shadow: 0px 0.6px 1.8px rgba(0, 0, 0, 0.1), 0px 3.2px 7.2px rgba(0, 0, 0, 0.13);
-`;
-
-const SectionMarginBottom = styled.div`
-	margin-bottom: 2rem;
-`;
-
-const SectionMargin = styled.div<{mb?: string}>`
+const CustomSection = styled.div<{
+	m?: string,
+	mb?: string,
+	mt?: string,
+	ml?: string,
+	mr?: string,
+	p?: string,
+	pb?: string,
+	pt?: string,
+	pl?: string,
+	pr?: string,
+}>`
+	margin: ${({m}) => m};
 	margin-bottom: ${({mb}) => mb};
-`;
-
-const StyledCardsHead = styled.div`
-	margin-bottom: 2rem;
-`;
-
-const WeatherCardContainer = styled.div`
-	border-radius: .2rem;
-	padding: 1rem;
-	// box-shadow: 0px 0.6px 1.8px rgba(0, 0, 0, 0.1), 0px 3.2px 7.2px rgba(0, 0, 0, 0.13);
-	margin-bottom: 1rem;
-`;
-
-const WeatherCardProp = styled.div`
-	margin-bottom: .5rem;
-`;
-
-const StyledArticleCardContainer = styled.div<{key?: string, color?: string, bgColor?: string}>`
-	background: ${props => props.bgColor};
-	color: ${props => props.color};
-	padding: 1rem;
-	cursor: pointer;
-	display: flex;
-	flex-direction: column;
-	border-radius: .2rem;
+	margin-top: ${({mt}) => mt};
+	margin-left: ${({ml}) => ml};
+	margin-right: ${({mr}) => mr};
+	margin: ${({p}) => p};
+	margin-bottom: ${({pb}) => pb};
+	margin-top: ${({pt}) => pt};
+	margin-left: ${({pl}) => pl};
+	margin-right: ${({pr}) => pr};
 `;
 
 const StyledErrorViewContainer = styled.div`
@@ -75,13 +33,6 @@ const StyledErrorViewContainer = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-`;
-
-const StyledArticlesStack = styled(Stack)`
-  height: calc(${window?.innerHeight}px - 120px);
-  width: 100%;
-	margin: 0 auto;
-	max-width: 800px;
 `;
 
 const StyledHeadOfSection = styled.div<{isMobile?: boolean;}>`
@@ -103,18 +54,15 @@ const StyledHeadOfSection = styled.div<{isMobile?: boolean;}>`
 `;
 
 const StyledArticlesGrid = styled.div<{isMobile?: boolean; gridTemplateColumns?: string | string[], columnGap?: string, rowGap?: string}>`
-	// padding: 1rem;
-	// border-radius: .2rem;
-	// border-top: .4rem solid #0002;
-	// border-bottom: .4rem solid #0004;
-	// border-left: .4rem solid #0002;
-	// border-right: .4rem solid #0004;
 	${({isMobile}) => isMobile ? `
 	` : `;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+		gap: .2rem;
 	`}
 `;
 
-const StyledParagraph2 = styled.div<{isMobile?: boolean}>`
+const StyledStandardButton = styled.div<{isMobile?: boolean}>`
 	width: 100%;
 	box-sizing: border-box;
 	border-radius: .2rem;
@@ -179,30 +127,22 @@ const TextContainerStyle = styled.div<{isMobile?: boolean;}>`
 	`}
 `;
 
-const StyledSectionWhiteCentered = styled(StyledSectionWhite)`
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
+const Wrapper01 = styled.div<{isMobile?: boolean;}>`
+	position: relative;
+	 ${({isMobile}) => isMobile ? `
+		marginTop: 0rem;
+	 ` : `
+		marginTop: 1rem;
+	 `}
 `;
 
 export {
-	StyledArticlesStack,
-	StyledParagraphHeader,
-	StyledParagraph,
-	StyledParagraph2,
+	StyledStandardButton,
 	StyledArticlesGrid,
-	StyledArticleCardContainer,
-	WeatherCardContainer,
-	WeatherCardProp,
-	StyledSectionWhite,
-	SectionMarginBottom,
-	SectionMargin,
 	StyledErrorViewContainer,
-	StyledCardsHead,
-	StyledParagraphTitle,
-	StyledSectionWhiteCentered,
-	FlexContainerCenter,
 	IconContainer,
 	TextContainerStyle,
 	StyledHeadOfSection,
+	Wrapper01,
+	CustomSection,
 };

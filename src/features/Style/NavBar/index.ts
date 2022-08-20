@@ -6,7 +6,7 @@ const NavBarWrapper = styled.div<{isMobile?: boolean;}>`
 		width: 100%;
 		display: flex;
 		align-items: center;
-		height: 40px;
+		margin-top: .2rem;
 		${({isMobile}) => isMobile ? `
 		margin-bottom: 0;
 		` : `
