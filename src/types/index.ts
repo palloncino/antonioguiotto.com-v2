@@ -94,11 +94,12 @@ interface StandardButtonProps {
 	secondaryTextVariant: keyof IFontStyles | undefined;
 	redirectURL?: string | undefined;
 	copyToClipBoard?: boolean;
+	bg?: string;
 	handleCopyToClipboard?: (text: string, ms?: number) => void;
 }
 
 interface LinkUpProps {
-    setCustomAlert: (payload: string | undefined) => void;
+    useCustomAlert: (payload: string | undefined) => void;
 }
 
 export type {

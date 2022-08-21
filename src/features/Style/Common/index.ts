@@ -18,6 +18,8 @@ const ViewWrapper = styled.div`
 	width: 100%;
 	max-width: 1024px;
 	margin: 0 auto;
+	box-sizing: border-box;
+	padding: .2rem;
 `;
 
 const ContentWrapper = styled.div`
@@ -25,9 +27,9 @@ const ContentWrapper = styled.div`
   width: 100%;
 `;
 
-const SpecialWordStyle = styled.span<{ color?: string }>`
-	color: ${props => props.color};
-	font-family: 'menlo';
+const SpecialWordStyle = styled.span<{color?: string}>`
+	color: ${({color}) => color};
+	// font-family: '';
 `;
 
 const StyledCustomAlertContainer = styled.div<{customAlert?: string | customAlertItemType[]; isMobile?: boolean}>`
@@ -71,10 +73,10 @@ const StyledCustomAlert = styled.div<{animationDuration?: string; width?: number
 			bottom: -100px;
 		}
 		20% {
-			bottom: 1rem;
+			bottom: .2rem;
 		}
 		80% {
-			bottom: 1rem;
+			bottom: .2rem;
 		}
 		100% {
 			bottom: -100px;
@@ -83,7 +85,7 @@ const StyledCustomAlert = styled.div<{animationDuration?: string; width?: number
 
 	${({customAlert, isMobile, width}) => customAlert ? `
 		${isMobile ? `
-		width: calc(${width}px - 2rem);
+		width: calc(${width}px - 0rem);
 		left: 50%;
 		transform: translateX(-50%);
 		` : `

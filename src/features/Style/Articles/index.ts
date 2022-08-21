@@ -24,6 +24,19 @@ const CustomSection = styled.div<{
 	margin-right: ${({pr}) => pr};
 `;
 
+const StyledLogoBox = styled.div<{isMobile?: boolean;}>`
+	background: #323130;
+	display: flex;
+	flexDirection: row;
+	alignItems: center;
+	justifyContent: center;
+	padding: 0rem;
+	height: 32px;
+	width: ${({isMobile}) => isMobile ? 'auto' : 'auto'};
+	border-radius: .2rem;
+	cursor: pointer;
+`;
+
 const StyledErrorViewContainer = styled.div`
 	padding: 1.2rem;
 	margin-bottom: 2rem;
@@ -62,38 +75,63 @@ const StyledArticlesGrid = styled.div<{isMobile?: boolean; gridTemplateColumns?:
 	`}
 `;
 
-const StyledStandardButton = styled.div<{isMobile?: boolean}>`
+const StyledStandardButton = styled.div<{isMobile?: boolean; bg?: string;}>`
+	background-image: ${({bg}) => `url(${bg})`};
+	background-position: top;
+	background-repeat: no-repeat;
+	background-size: cover;
+	
 	width: 100%;
 	box-sizing: border-box;
 	border-radius: .2rem;
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
-	background: #0002;
-	transition: .2s;
-	background: #0002;
 	border: .05rem solid #0002;
 	border-bottom: .1rem solid #0002;
 	overflow: hidden;
+	animation: topToCenterBg 2s forwards;
+	animation-duration: 2s;
+	// animation-delay: 1s;
 	&:hover {
 		cursor: pointer;
     }
+	@keyframes topToCenterBg {
+		0% {
+			background-position: top;
+			background-repeat: no-repeat;
+			background-size: cover;
+			// opacity: 0;
+		}
+		100% {
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			// opacity: 1;
+		}
+	}
 	${({isMobile}) => isMobile ? `
-	height: 40px;
+	height: 32px;
 	padding: .5rem;
 	border: none;
 	border-radius: .2rem;
 	&:focus {
-		background: #0004;
+		border-left: .1rem solid;
+		border-right: .1rem solid;
+		border-top: .1rem solid;
+		border-bottom: .1rem solid;
 	}
 	` : `
-	height 40px;
+	height: 40px;
 	padding: 0 1rem;
 	&:focus {
-		background: #0004;
-		border-bottom: .0rem solid #0002;
+		border-left: .1rem solid;
+		border-right: .1rem solid;
+		border-top: .1rem solid;
+		border-bottom: .1rem solid;
 	}
-	&:hover { background: #0004; }
+	&:hover { 
+	}
 	`}
 `;
 
@@ -145,4 +183,5 @@ export {
 	StyledHeadOfSection,
 	Wrapper01,
 	CustomSection,
+	StyledLogoBox,
 };

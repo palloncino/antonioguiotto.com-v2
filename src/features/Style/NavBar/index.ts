@@ -6,7 +6,6 @@ const NavBarWrapper = styled.div<{isMobile?: boolean;}>`
 		width: 100%;
 		display: flex;
 		align-items: center;
-		margin-top: .2rem;
 		${({isMobile}) => isMobile ? `
 		margin-bottom: 0;
 		` : `
@@ -27,9 +26,9 @@ const NavBarContentContainer = styled.div<{isMobile?: boolean;}>`
 	height: 100%;
 	width: 100%;
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-start;
 	align-items: center;
-	padding: ${({isMobile}) => isMobile ? '0 1rem' : '0'};
+	padding: ${({isMobile}) => isMobile ? '0' : '0'};
 `;
 
 const dropdownStyles: Partial<IDropdownStyles> = {

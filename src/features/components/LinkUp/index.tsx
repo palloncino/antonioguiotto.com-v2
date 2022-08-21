@@ -5,8 +5,12 @@ import {useDevice} from '../../../hooks/useDevice';
 import {LinkUpProps} from '../../../types';
 import {CustomSection, StyledArticlesGrid, StyledHeadOfSection} from '../../Style';
 import StandardButton from '../StandardButton';
+import gmailSvg from '../../../media/svgs/gmail.svg';
+import whatsappSvg from '../../../media/svgs/whatsapp.svg';
+import githubSvg from '../../../media/svgs/github.svg';
+import linkedinSvg from '../../../media/svgs/linkedin.svg';
 
-export default function LinkUp({setCustomAlert}: LinkUpProps) {
+export default function LinkUp({useCustomAlert}: LinkUpProps) {
 	const [primaryText, setPrimaryText] = useState<keyof IFontStyles | undefined>(undefined);
 	const [secondaryText, setSecondaryText] = useState<keyof IFontStyles | undefined>(undefined);
 	const {isMobile, isLaptop, isMonitor} = useDevice();
@@ -15,10 +19,6 @@ export default function LinkUp({setCustomAlert}: LinkUpProps) {
 		useCustomAlert(`✔ Copied to clipboard: ${text}`);
 		navigator.clipboard.writeText(text);
 	};
-
-	useEffect(() => {
-		useCustomAlert(isMobile ? '✔ Mobile Friendly' : '✔ Keyboard Friendly.Use TAB(↹) and Shift+TAB(⇧ + ↹) to navigate.Hit Enter(↩) to call action.');
-	}, []);
 
 	useEffect(() => {
 		addEventListener('resize', throttle(handleResize, 500));
@@ -30,18 +30,12 @@ export default function LinkUp({setCustomAlert}: LinkUpProps) {
 			setPrimaryText('xLarge');
 			setSecondaryText('large');
 		} else if (isLaptop) {
-			setPrimaryText('large');
+			setPrimaryText('xLarge');
 			setSecondaryText('medium');
 		} else if (isMobile) {
 			setPrimaryText('medium');
 			setSecondaryText('small');
 		}
-	};
-
-	const useCustomAlert = async (text: string) => {
-		setCustomAlert(text);
-		await new Promise(resolve => setTimeout(resolve, 4000));
-		setCustomAlert(undefined);
 	};
 
 	return (
@@ -50,41 +44,45 @@ export default function LinkUp({setCustomAlert}: LinkUpProps) {
 				<Text variant="xxLargePlus">Link up</Text>
 			</StyledHeadOfSection>
 			<StyledArticlesGrid isMobile={isMobile}>
-				<CustomSection mb=".2rem">
+				<CustomSection mb={isMobile ? '.2rem' : '0rem'}>
 					<StandardButton
 						primaryText={'Gmail'}
 						secondaryText={'powerhydratoni@gmail.com'}
 						copyToClipBoard
 						handleCopyToClipboard={handleCopyToClipboard}
 						primaryTextVariant={primaryText}
-						secondaryTextVariant={secondaryText} />
+						secondaryTextVariant={secondaryText}
+						bg={gmailSvg} />
 				</CustomSection>
 
-				<CustomSection mb=".2rem">
+				<CustomSection mb={isMobile ? '.2rem' : '0rem'}>
 					<StandardButton
 						primaryText={'Whatsapp'}
 						secondaryText={'Chat now'}
 						redirectURL={'wa.me/00393474943221'}
 						primaryTextVariant={primaryText}
-						secondaryTextVariant={secondaryText} />
+						secondaryTextVariant={secondaryText}
+						bg={whatsappSvg} />
 				</CustomSection>
 
-				<CustomSection mb=".2rem">
+				<CustomSection mb={isMobile ? '.2rem' : '0rem'}>
 					<StandardButton
 						primaryText={'Github'}
 						secondaryText={'palloncino'}
 						redirectURL={'github.com/palloncino'}
 						primaryTextVariant={primaryText}
-						secondaryTextVariant={secondaryText} />
+						secondaryTextVariant={secondaryText}
+						bg={githubSvg} />
 				</CustomSection>
 
-				<CustomSection>
+				<CustomSection mb={isMobile ? '.2rem' : '0rem'}>
 					<StandardButton
 						primaryText={'Linkedin'}
 						secondaryText={'Antonio Guiotto'}
 						redirectURL={'www.linkedin.com/in/antonioguiotto'}
 						primaryTextVariant={primaryText}
-						secondaryTextVariant={secondaryText} />
+						secondaryTextVariant={secondaryText}
+						bg={linkedinSvg} />
 				</CustomSection>
 
 			</StyledArticlesGrid>

@@ -2,7 +2,6 @@ import {StyledCustomAlertContainer, StyledCustomAlert, SpecialWordStyle} from '.
 import {CustomAlertProps} from '../../../types';
 import {useDevice} from '../../../hooks/useDevice';
 import {useEffect, useRef, useState} from 'react';
-import {throttle} from 'lodash';
 
 export default function CustomAlert({customAlert}: CustomAlertProps) {
 	const [customAlertLenght, setCustomAlertLength] = useState();
@@ -10,11 +9,9 @@ export default function CustomAlert({customAlert}: CustomAlertProps) {
 	const _ref = useRef(null);
 
 	useEffect(() => {
-		addEventListener('resize', throttle(handleResize, 500));
+		addEventListener('resize', () => setCustomAlertLength((_ref as any).current.clientWidth));
 		dispatchEvent(new CustomEvent('resize'));
 	});
-
-	const handleResize = () => setCustomAlertLength((_ref as any).current.clientWidth);
 
 	return (
 		<StyledCustomAlertContainer
