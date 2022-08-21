@@ -1,16 +1,13 @@
-/* eslint-disable no-unused-vars */
 import {Dropdown, IDropdownOption, Stack, Text} from '@fluentui/react';
 import {FormEvent, useState} from 'react';
 import {useNavigation} from '../../../hooks';
+import {useDevice} from '../../../hooks/useDevice';
+import logo from '../../../media/svgs/logo-white.svg';
 import {IFramedChildComponentProps} from '../../../types';
 import {viewsToDropdownOptions} from '../../../utils';
 import {extractModuleFromUrl} from '../../../utils/URL';
-import {useEffect} from 'react';
-import logo from '../../../media/svgs/logo-white.svg';
 import {SpecialWordStyle} from '../../Style';
 import {dropdownStyles, horizontalGapStackTokens, logoStyle, NavBarContentContainer, NavBarWrapper, StyledNavBarBox} from '../../Style/NavBar';
-import Anchor from '../Anchor';
-import {useDevice} from '../../../hooks/useDevice';
 
 export const NavBar = ({appConfig}: IFramedChildComponentProps) => {
 	const {pathname, navigate} = useNavigation();

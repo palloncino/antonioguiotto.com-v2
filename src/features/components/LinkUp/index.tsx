@@ -30,10 +30,10 @@ export default function LinkUp({setCustomAlert}: LinkUpProps) {
 			setPrimaryText('xLarge');
 			setSecondaryText('large');
 		} else if (isLaptop) {
-			setPrimaryText('large');
+			setPrimaryText('xLarge');
 			setSecondaryText('medium');
 		} else if (isMobile) {
-			setPrimaryText('medium');
+			setPrimaryText('large');
 			setSecondaryText('small');
 		}
 	};
