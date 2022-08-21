@@ -47,10 +47,12 @@ const StyledCustomAlertContainer = styled.div<{customAlert?: string | customAler
 	`}
 `;
 
-const StyledCustomAlert = styled.div<{customAlert?: string | customAlertItemType[]; isMobile?: boolean}>`
+const StyledCustomAlert = styled.div<{width?: number; customAlert?: string | customAlertItemType[]; isMobile?: boolean}>`
+	width: ${({width}) => `${width}px`};
 	transition: transform ease-in-out .5s, opacity ease .5s;
+	z-index: 200;
 	position: fixed;
-	bottom: -10%;
+	bottom: 0;
 	opacity: 0;
 	box-sizing: border-box;
 	height: 4rem;
@@ -58,14 +60,15 @@ const StyledCustomAlert = styled.div<{customAlert?: string | customAlertItemType
 	justify-content: flex-start;
 	align-items: flex-start;
 	padding: 1rem;
-	border: 1px solid;
-	width: 100%;
+	background: #000;
+	color: #fff;
+
 	${({customAlert, isMobile}) => customAlert ? `
 		${isMobile ? `
-		transform: translateY(-200%);
+		transform: translateY(0%);
 		opacity: 1;
 		` : `
-		transform: translateY(-200%);
+		transform: translateY(0%);
 		opacity: 1;
 		`}
 	` : `
