@@ -47,29 +47,47 @@ const StyledCustomAlertContainer = styled.div<{customAlert?: string | customAler
 	`}
 `;
 
-const StyledCustomAlert = styled.div<{width?: number; customAlert?: string | customAlertItemType[]; isMobile?: boolean}>`
+const StyledCustomAlert = styled.div<{animationDuration?: string; width?: number; customAlert?: string | customAlertItemType[]; isMobile?: boolean}>`
 	width: ${({width}) => `${width}px`};
-	transition: transform ease-in-out .5s, opacity ease .5s;
+	height: auto;
+	background: #323130;
+	color: #fff;
 	z-index: 200;
 	position: fixed;
-	bottom: 0;
-	opacity: 0;
+	bottom: -100px;
 	box-sizing: border-box;
-	height: 4rem;
+	padding: 1rem;
 	display: flex;
 	justify-content: flex-start;
 	align-items: flex-start;
-	padding: 1rem;
-	background: #000;
-	color: #fff;
+	border-radius: 0.2rem;
 
-	${({customAlert, isMobile}) => customAlert ? `
+	&.active {
+		animation: popup 4s ease-in-out;
+	}
+
+	@keyframes popup {
+		0% {
+			bottom: -100px;
+		}
+		20% {
+			bottom: 1rem;
+		}
+		80% {
+			bottom: 1rem;
+		}
+		100% {
+			bottom: -100px;
+		}
+	}
+
+	${({customAlert, isMobile, width}) => customAlert ? `
 		${isMobile ? `
-		transform: translateY(0%);
-		opacity: 1;
+		width: calc(${width}px - 2rem);
+		left: 50%;
+		transform: translateX(-50%);
 		` : `
-		transform: translateY(0%);
-		opacity: 1;
+	
 		`}
 	` : `
 		${isMobile ? `

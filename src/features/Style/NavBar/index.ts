@@ -29,7 +29,7 @@ const NavBarContentContainer = styled.div<{isMobile?: boolean;}>`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: ${({isMobile}) => isMobile ? '0 1rem' : '0 2rem'};
+	padding: ${({isMobile}) => isMobile ? '0 1rem' : '0'};
 `;
 
 const dropdownStyles: Partial<IDropdownStyles> = {

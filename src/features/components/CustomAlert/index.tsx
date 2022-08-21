@@ -26,7 +26,7 @@ export default function CustomAlert({customAlert}: CustomAlertProps) {
 			<StyledCustomAlert
 				customAlert={customAlert}
 				isMobile={isMobile}
-				className="CustomAlert"
+				className={`CustomAlert ${customAlert && 'active'}`}
 				width={customAlertLenght}>
 
 				<SpecialWordStyle>

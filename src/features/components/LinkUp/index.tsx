@@ -38,9 +38,9 @@ export default function LinkUp({setCustomAlert}: LinkUpProps) {
 		}
 	};
 
-	const useCustomAlert = async (text: string, ms: number = 2000) => {
+	const useCustomAlert = async (text: string) => {
 		setCustomAlert(text);
-		await new Promise(resolve => setTimeout(resolve, ms));
+		await new Promise(resolve => setTimeout(resolve, 4000));
 		setCustomAlert(undefined);
 	};
 
