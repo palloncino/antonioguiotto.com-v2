@@ -1,5 +1,6 @@
 import {Stack} from '@fluentui/react';
 import styled from 'styled-components';
+import {customAlertItemType} from '../../../types';
 
 const StylePageContentContainer = styled(Stack)`
   height: calc(${window?.innerHeight}px - 120px);
@@ -29,11 +30,62 @@ const SpecialWordStyle = styled.span<{ color?: string }>`
 	font-family: 'menlo';
 `;
 
+const StyledCustomAlertContainer = styled.div<{customAlert?: string | customAlertItemType[]; isMobile?: boolean}>`
+	position: relative;
+	${({customAlert, isMobile}) => customAlert ? `
+		${isMobile ? `
+		
+		` : `
+		
+		`}
+	` : `
+		${isMobile ? `
+			
+		` : `
+			
+		`}
+	`}
+`;
+
+const StyledCustomAlert = styled.div<{customAlert?: string | customAlertItemType[]; isMobile?: boolean}>`
+	transition: transform ease-in-out .5s, opacity ease .5s;
+	position: fixed;
+	bottom: -10%;
+	opacity: 0;
+	box-sizing: border-box;
+	height: 4rem;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	padding: 1rem;
+	border: 1px solid;
+	width: 100%;
+	${({customAlert, isMobile}) => customAlert ? `
+		${isMobile ? `
+		transform: translateY(-200%);
+		opacity: 1;
+		` : `
+		transform: translateY(-200%);
+		opacity: 1;
+		`}
+	` : `
+		${isMobile ? `
+
+
+		` : `
+
+
+		`}
+	`}
+`;
+
 export {
 	StylePageContentContainer,
 	ViewWrapper,
 	ContentWrapper,
 	SpecialWordStyle,
 	WebsiteContainer,
+	StyledCustomAlertContainer,
+	StyledCustomAlert,
 };
 

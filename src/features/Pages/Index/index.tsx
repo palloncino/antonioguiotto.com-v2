@@ -9,7 +9,7 @@ import {StylePageContentContainer, Wrapper01} from '../../Style';
 
 // eslint-disable-next-line no-empty-pattern
 const Index = ({}: IApplicationProps) => {
-	const [customAlert, setCustomAlert] = useState<string | undefined>(undefined);
+	const [customAlert, setCustomAlert] = useState<string | undefined>('asd');
 
 	const errorMessage = '';
 	const errorMessageView = () => <ErrorView message={errorMessage} />;

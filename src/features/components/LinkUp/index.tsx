@@ -17,7 +17,7 @@ export default function LinkUp({setCustomAlert}: LinkUpProps) {
 	};
 
 	useEffect(() => {
-		useCustomAlert(isMobile ? '✔ Mobile Friendly' : '✔ Keyboard Friendly.Use TAB(↹) and Shift+TAB(⇧ + ↹) to navigate.Hit Enter(↩) to call action.');
+		// useCustomAlert(isMobile ? '✔ Mobile Friendly' : '✔ Keyboard Friendly.Use TAB(↹) and Shift+TAB(⇧ + ↹) to navigate.Hit Enter(↩) to call action.');
 	}, []);
 
 	useEffect(() => {

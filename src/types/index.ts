@@ -78,7 +78,7 @@ interface IErrorViewProps {
 	message: string;
 }
 
-type customAlertItemType = {
+export type customAlertItemType = {
 	text: string;
 	duration: number;
 }
