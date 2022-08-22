@@ -139,19 +139,11 @@ const StyledStandardButton = styled.div<{isMobile?: boolean; bg?: string;}>`
 	border: none;
 	border-radius: .2rem;
 	&:focus {
-		border-left: .1rem solid;
-		border-right: .1rem solid;
-		border-top: .1rem solid;
-		border-bottom: .1rem solid;
 	}
 	` : `
 	height: 40px;
 	padding: 0 1rem;
 	&:focus {
-		border-left: .1rem solid;
-		border-right: .1rem solid;
-		border-top: .1rem solid;
-		border-bottom: .1rem solid;
 	}
 	&:hover { 
 	}

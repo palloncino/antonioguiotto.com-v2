@@ -1,5 +1,5 @@
 import {Text} from '@fluentui/react';
-import {useState} from 'react';
+import {useRef, useState} from 'react';
 import {useDevice} from '../../../hooks/useDevice';
 import {StandardButtonProps} from '../../../types';
 import {StyledStandardButton, TextContainerStyle} from '../../Style';
@@ -10,7 +10,7 @@ enum Keyboard { Enter = 13 }
 
 export default function StandardButton({primaryText, secondaryText, primaryTextVariant, secondaryTextVariant, redirectURL, copyToClipBoard, handleCopyToClipboard, bg}: StandardButtonProps) {
 	const {isMobile} = useDevice();
-	const [isHovered, setIsHovered] = useState(false);
+	const _ref = useRef(null);
 
 	const handleClick = () => {
 		if (copyToClipBoard && handleCopyToClipboard && secondaryText) {
@@ -20,6 +20,21 @@ export default function StandardButton({primaryText, secondaryText, primaryTextV
 		if (redirectURL) {
 			window.location.href = `https://${redirectURL}`;
 		}
+
+		(_ref.current as any).animate([
+			{
+				transform: 'scale(.95)',
+				easing: 'ease-out',
+			},
+			{
+				transform: 'scale(1.02)',
+				easing: 'ease-out',
+			},
+			{
+				transform: 'scale(1)',
+				easing: 'ease-out',
+			},
+		], 500);
 	};
 
 	const handleKeyPress = (event?: any) => {
@@ -39,6 +54,7 @@ export default function StandardButton({primaryText, secondaryText, primaryTextV
 			tabIndex={1}
 			onKeyPress={handleKeyPress}
 			onClick={handleClick}
+			ref={_ref}
 			bg={bg}>
 			<TextContainerStyle isMobile={isMobile} className="StyledStandardButton__TextContainer">
 				<Text variant={primaryTextVariant} style={{background: '#ffffff90', padding: '0rem .2rem'}}>
