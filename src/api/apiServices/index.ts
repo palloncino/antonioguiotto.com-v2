@@ -1,4 +1,4 @@
-import {} from '../../types';
+import {coordinatesQueryObjectType, weatherQueryObjectType} from '../../types/weather';
 import {clientRequest} from '../apiSettings';
 
 const prefixGeo = 'geo/1.0/direct';
@@ -21,24 +21,24 @@ const querifyObject = (queryObject: any): string => {
 	return queryString || '&';
 };
 
-export const pathFrom = (apiPath: keyof typeof endpoint, queryObject: any | undefined) => {
+export const pathFrom = (apiPath: keyof typeof endpoint, queryObject: coordinatesQueryObjectType | weatherQueryObjectType | undefined) => {
 	const path = endpoint[apiPath];
 	const query = querifyObject(queryObject);
-	const apiKey = `appid=${process.env.REACT_APP_API_KEY}`;
+	const apiKey = `appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`;
 	return `${path}${path.includes('?') ? '&' : '?'}${query}${apiKey}`;
 };
 
-export const fromLondonCoordinates = (queryObject?: any) => pathFrom('LondonCoordinates', queryObject);
-export const fromLondonCurrent = (queryObject?: any) => pathFrom('LondonWeather', queryObject);
-export const fromLondonForecast = (queryObject?: any) => pathFrom('LondonForecast', queryObject);
+export const fromLondonCoordinates = (queryObject?: coordinatesQueryObjectType) => pathFrom('LondonCoordinates', queryObject);
+export const fromLondonCurrent = (queryObject?: weatherQueryObjectType) => pathFrom('LondonWeather', queryObject);
+export const fromLondonForecast = (queryObject?: weatherQueryObjectType) => pathFrom('LondonForecast', queryObject);
 
 const ApiService = {
 	coordinates: {
-		London: (queryObject: any) => clientRequest().get(fromLondonCoordinates(queryObject)),
+		London: (queryObject: coordinatesQueryObjectType) => clientRequest().get(fromLondonCoordinates(queryObject)),
 	},
 	weather: {
-		London: (queryObject?: any) => clientRequest().get(fromLondonCurrent(queryObject)),
-		LondonForecast: (queryObject?: any) => clientRequest().get(fromLondonForecast(queryObject)),
+		London: (queryObject?: weatherQueryObjectType) => clientRequest().get(fromLondonCurrent(queryObject)),
+		LondonForecast: (queryObject?: weatherQueryObjectType) => clientRequest().get(fromLondonForecast(queryObject)),
 	},
 };
 

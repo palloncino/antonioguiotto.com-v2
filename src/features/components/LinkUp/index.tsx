@@ -1,16 +1,16 @@
-import {IFontStyles, Text} from '@fluentui/react';
+import {IFontStyles} from '@fluentui/react';
 import {throttle} from 'lodash';
 import {useEffect, useState} from 'react';
 import {useDevice} from '../../../hooks/useDevice';
-import {LinkUpProps} from '../../../types';
-import {CustomSection, StyledArticlesGrid, StyledHeadOfSection} from '../../Style';
-import StandardButton from '../StandardButton';
-import gmailSvg from '../../../media/svgs/gmail.svg';
-import whatsappSvg from '../../../media/svgs/whatsapp.svg';
 import githubSvg from '../../../media/svgs/github.svg';
+import gmailSvg from '../../../media/svgs/gmail.svg';
 import linkedinSvg from '../../../media/svgs/linkedin.svg';
+import whatsappSvg from '../../../media/svgs/whatsapp.svg';
+import {LinkUpProps} from '../../../types';
+import {CustomSection, StyledArticlesGrid} from '../../Style';
+import StandardButton from '../StandardButton';
 
-export default function LinkUp({useCustomAlert}: LinkUpProps) {
+export default function LinkUp({useCustomAlert, buttonHeight}: LinkUpProps) {
 	const [primaryText, setPrimaryText] = useState<keyof IFontStyles | undefined>(undefined);
 	const [secondaryText, setSecondaryText] = useState<keyof IFontStyles | undefined>(undefined);
 	const {isMobile, isLaptop, isMonitor} = useDevice();
@@ -39,53 +39,62 @@ export default function LinkUp({useCustomAlert}: LinkUpProps) {
 	};
 
 	return (
-		<>
-			<StyledHeadOfSection id="linkup" isMobile={isMobile}>
+		<CustomSection width="100%" className="LinkUp">
+			{/* <StyledHeadOfSection id="LinkUpHead" isMobile={isMobile}>
 				<Text variant="xxLargePlus">Link up</Text>
-			</StyledHeadOfSection>
-			<StyledArticlesGrid isMobile={isMobile}>
+			</StyledHeadOfSection> */}
+			<StyledArticlesGrid isMobile={isMobile} className="LinkUpBody LinkUpBodyGrid">
 				<CustomSection mb={isMobile ? '.2rem' : '0rem'}>
 					<StandardButton
-						primaryText={'Gmail'}
-						secondaryText={'powerhydratoni@gmail.com'}
+						altText={isMobile ? 'Open email' : 'Copy to clipboard'}
+						primaryText={'Email'}
+						secondaryText={isMobile ? 'Send me an email' : 'powerhydratoni@gmail.com - copy to clipboard'}
 						copyToClipBoard
-						handleCopyToClipboard={handleCopyToClipboard}
+						handleCopyToClipboard={isMobile ? undefined : handleCopyToClipboard}
+						redirectURL={isMobile ? 'mailto:powerhydratoni@gmail.com' : undefined}
 						primaryTextVariant={primaryText}
 						secondaryTextVariant={secondaryText}
-						bg={gmailSvg} />
+						bg={gmailSvg}
+						buttonHeight={buttonHeight} />
 				</CustomSection>
 
 				<CustomSection mb={isMobile ? '.2rem' : '0rem'}>
 					<StandardButton
+						altText={'Chat on Whatsapp'}
 						primaryText={'Whatsapp'}
 						secondaryText={'Chat now'}
 						redirectURL={'wa.me/00393474943221'}
 						primaryTextVariant={primaryText}
 						secondaryTextVariant={secondaryText}
-						bg={whatsappSvg} />
+						bg={whatsappSvg}
+						buttonHeight={buttonHeight} />
 				</CustomSection>
 
 				<CustomSection mb={isMobile ? '.2rem' : '0rem'}>
 					<StandardButton
+						altText={'Redirect to Github Account'}
 						primaryText={'Github'}
 						secondaryText={'palloncino'}
 						redirectURL={'github.com/palloncino'}
 						primaryTextVariant={primaryText}
 						secondaryTextVariant={secondaryText}
-						bg={githubSvg} />
+						bg={githubSvg}
+						buttonHeight={buttonHeight} />
 				</CustomSection>
 
 				<CustomSection mb={isMobile ? '.2rem' : '0rem'}>
 					<StandardButton
+						altText={'Redirect to linkedin Account'}
 						primaryText={'Linkedin'}
 						secondaryText={'Antonio Guiotto'}
 						redirectURL={'www.linkedin.com/in/antonioguiotto'}
 						primaryTextVariant={primaryText}
 						secondaryTextVariant={secondaryText}
-						bg={linkedinSvg} />
+						bg={linkedinSvg}
+						buttonHeight={buttonHeight} />
 				</CustomSection>
 
 			</StyledArticlesGrid>
-		</>
+		</CustomSection>
 	);
 }

@@ -13,13 +13,13 @@ const WebsiteContainer = styled(Stack)`
   border: 1px solid;
 `;
 
-const ViewWrapper = styled.div`
+const ViewWrapper = styled.div<{isMobile?: boolean;}>`
 	height: 100%;
 	width: 100%;
 	max-width: 1024px;
 	margin: 0 auto;
 	box-sizing: border-box;
-	padding: .2rem;
+	padding: ${({isMobile}) => isMobile ? '0rem .4rem' : '0rem'};
 `;
 
 const ContentWrapper = styled.div`

@@ -26,7 +26,7 @@ const NavBarContentContainer = styled.div<{isMobile?: boolean;}>`
 	height: 100%;
 	width: 100%;
 	display: flex;
-	justify-content: flex-start;
+	justify-content: space-between;
 	align-items: center;
 	padding: ${({isMobile}) => isMobile ? '0' : '0'};
 `;
@@ -51,7 +51,9 @@ const horizontalGapStackTokens: IStackTokens = {
 };
 
 const logoStyle = {
-	height: '100%',
+	height: '1.6rem',
+	paddingLeft: '.2rem',
+	paddingRight: '0rem',
 };
 
 export {
