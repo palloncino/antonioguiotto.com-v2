@@ -37,6 +37,29 @@ const StyledLogoBox = styled.div<{isMobile?: boolean;}>`
 	cursor: pointer;
 `;
 
+const StyledLogoPlusTextBox = styled.div<{}>`
+	display: flex;
+	align-items: center;
+
+	animation-name: fallDown;
+	animation-duration: 1s;
+	animation-delay: 0s;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in-out;
+	animation-fill-mode : forwards;
+
+	@keyframes fallDown {
+		0% {
+			transform: translateY(-100%);
+			opacity: 1;
+		}
+		100% {
+			transform: translateY(0%);
+			opacity: 1;
+		}
+	}
+`;
+
 const StyledErrorViewContainer = styled.div`
 	padding: 1.2rem;
 	margin-bottom: 2rem;
@@ -184,4 +207,5 @@ export {
 	Wrapper01,
 	CustomSection,
 	StyledLogoBox,
+	StyledLogoPlusTextBox,
 };
