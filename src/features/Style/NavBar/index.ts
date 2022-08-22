@@ -26,7 +26,7 @@ const NavBarContentContainer = styled.div<{isMobile?: boolean;}>`
 	height: 100%;
 	width: 100%;
 	display: flex;
-	justify-content: flex-start;
+	justify-content: space-between;
 	align-items: center;
 	padding: ${({isMobile}) => isMobile ? '0' : '0'};
 `;

@@ -1,6 +1,8 @@
 import styled from 'styled-components';
+import {Sections} from '../../Pages/Index';
 
 const CustomSection = styled.div<{
+	width?: string,
 	m?: string,
 	mb?: string,
 	mt?: string,
@@ -22,6 +24,7 @@ const CustomSection = styled.div<{
 	margin-top: ${({pt}) => pt};
 	margin-left: ${({pl}) => pl};
 	margin-right: ${({pr}) => pr};
+	${({width}) => width ? `width: ${width};` : null}
 `;
 
 const StyledLogoBox = styled.div<{isMobile?: boolean;}>`
@@ -82,71 +85,73 @@ const StyledHeadOfSection = styled.div<{isMobile?: boolean;}>`
 		position: absolute;
 		left: 0;
 		text-decoration: underline;
-		line-height: 3rem;
-		top: -50px;
-		padding: 0.5rem 2rem;
+		top: -40px;
 		z-index: 1;
 	`}
 `;
 
 const StyledArticlesGrid = styled.div<{isMobile?: boolean; gridTemplateColumns?: string | string[], columnGap?: string, rowGap?: string}>`
 	${({isMobile}) => isMobile ? `
+		gap: .2rem;
 	` : `;
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-		gap: .2rem;
+		gap: .4rem;
 	`}
 `;
 
-const StyledStandardButton = styled.div<{isMobile?: boolean; bg?: string;}>`
-	background-image: ${({bg}) => `url(${bg})`};
+const StyledStandardButton = styled.div<{isMobile?: boolean; bg?: string; height?: string;}>`
+	// background-image: ${({bg}) => `url(${bg})`};
+	background: #5BA1B0;
 	background-position: top;
 	background-repeat: no-repeat;
 	background-size: cover;
-	
+
+	cursor: pointer;
 	width: 100%;
 	box-sizing: border-box;
 	border-radius: .2rem;
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
-	border: .05rem solid #0002;
-	border-bottom: .1rem solid #0002;
 	overflow: hidden;
-	animation: topToCenterBg 2s forwards;
-	animation-duration: 2s;
-	// animation-delay: 1s;
+
 	&:hover {
-		cursor: pointer;
-    }
-	@keyframes topToCenterBg {
+		animation: animation02 .5s forwards;
+	}
+
+	&:not(:hover) {
+		animation: animation01 .2s;
+	}
+
+	@keyframes animation02 {
 		0% {
-			background-position: top;
-			background-repeat: no-repeat;
-			background-size: cover;
-			// opacity: 0;
+			transform: scale(1);
 		}
 		100% {
-			background-position: center;
-			background-repeat: no-repeat;
-			background-size: cover;
-			// opacity: 1;
+			transform: scale(1.02);
 		}
 	}
-	${({isMobile}) => isMobile ? `
-	height: 32px;
-	padding: .5rem;
-	border: none;
-	border-radius: .2rem;
-	&:focus {
+
+	@keyframes animation01 {
+		0% {
+			transform: scale(1.02);
+		}
+		100% {
+			transform: scale(1);
+		}
 	}
+
+	${({isMobile, height}) => isMobile ? `
+		height: 32px;
+		padding: .5rem;
+		border-radius: .2rem;
+		&:hover {
+			animation: unset;
+		}
 	` : `
-	height: 40px;
-	padding: 0 1rem;
-	&:focus {
-	}
-	&:hover { 
-	}
+		height: ${height || '40px'};
+		padding: 0 1rem;
 	`}
 `;
 
@@ -189,6 +194,70 @@ const Wrapper01 = styled.div<{isMobile?: boolean;}>`
 	 `}
 `;
 
+const StyledBanner01Animator = styled.div<{disabled?: boolean;}>`
+	position: relative;
+	borderRadius: .2rem;
+	width: 100%;
+	height: 100%;
+	boxSizing: border-box;
+	&:hover {
+		${({disabled}) => disabled ? '' : 'animation: animation02 .5s forwards;'}
+	}
+	&:not(:hover) {
+		${({disabled}) => disabled ? '' : 'animation: animation01 .2s;'}
+	}
+	@keyframes animation02 {
+		0% {
+			transform: scale(1);
+		}
+		100% {
+			transform: scale(1.02);
+		}
+	}
+	@keyframes animation01 {
+		0% {
+			transform: scale(1.02);
+		}
+		100% {
+			transform: scale(1);
+		}
+	}
+`;
+
+const StyledBanner01Background = styled.div<{id?: string;}>`
+	${({id}) => {
+		if (id === Sections.Camping) {
+			return 'background: #B18F69;';
+		}
+
+		if (id === Sections.Videos) {
+			return 'background: #D8CAAE;';
+		}
+
+		if (id === Sections.Contacts) {
+			return 'background: #ACD1D1;';
+		}
+	}}
+	background-size: cover;
+	background-position: center;
+	height: 100%;
+	width: 100%;
+	cursor: pointer;
+	border-radius: .2rem;
+`;
+
+const StyledBanner01TextBox = styled.div<{isMobile?: boolean;}>`
+	position: absolute;
+	bottom: .2rem;
+	right: .2rem;
+	display: flex;
+	flex-direction: column;
+	padding: .2rem 1rem;
+	background: #323130;
+	border-radius: .2rem;
+	${({isMobile}) => isMobile ? 'min-width: auto;' : 'min-width: 200px;'}
+`;
+
 export {
 	StyledStandardButton,
 	StyledArticlesGrid,
@@ -200,4 +269,7 @@ export {
 	CustomSection,
 	StyledLogoBox,
 	StyledLogoPlusTextBox,
+	StyledBanner01Animator,
+	StyledBanner01Background,
+	StyledBanner01TextBox,
 };

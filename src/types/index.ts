@@ -19,6 +19,7 @@ interface IHeroHeaderProps extends IApplicationProps {
 	bgImage?: string;
 	headline?: string;
 	subHeadline?: string;
+	message?: string;
 }
 interface IApplicationProps {
 	theme?: PartialTheme | undefined;
@@ -96,9 +97,11 @@ interface StandardButtonProps {
 	copyToClipBoard?: boolean;
 	bg?: string;
 	handleCopyToClipboard?: (text: string, ms?: number) => void;
+	buttonHeight?: string;
 }
 
 interface LinkUpProps {
+	buttonHeight?: string;
     useCustomAlert: (payload: string | undefined) => void;
 }
 
