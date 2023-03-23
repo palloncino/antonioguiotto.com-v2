@@ -204,8 +204,6 @@ const Index = ({}: IApplicationProps) => {
 						</div>
 					</div>
 
-					{/*
-
 					<div id="Videos" className={`Videos${isVideosSectionOpen ? ' open' : ''}`} style={{...tempStyle, flex: 2, minWidth: '100%'}}>
 						<CustomSection width={'100%'} mb={isVideosSectionOpen ? '.4rem' : '.4rem'} mt={isWebsitesSectionOpen ? '.4rem' : '0rem'}>
 							<Banner01
@@ -243,8 +241,6 @@ const Index = ({}: IApplicationProps) => {
 							</div>
 						</div>
 					))}
-
-					*/}
 
 					<div id="Contacts" className={`Contacts${isContactsSectionOpen ? ' open' : ''}`} style={{...tempStyle, flex: 2, minWidth: '100%'}}>
 						<CustomSection width={'100%'} mb={isMobile ? '.2rem' : '.4rem'} mt={isVideosSectionOpen ? '.4rem' : '0rem'}>
