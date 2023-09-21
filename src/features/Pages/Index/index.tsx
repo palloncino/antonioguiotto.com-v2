@@ -216,8 +216,6 @@ const Index = ({}: IApplicationProps) => {
 						</CustomSection>
 					</div>
 
-					{console.log(config.data.videos.data)}
-
 					{config.data.videos.data.map(({name, title, author, url}, index) => (
 						<div
 							key={`${title}-${index}`}
@@ -228,7 +226,6 @@ const Index = ({}: IApplicationProps) => {
 									onClick={() => handleSectionSubPageClick(null, isMobile, Sections.Videos)}
 									// ref={_ref03}
 									style={{
-										// background: `url(${undefined || url })`,
 										background: '#e4e4e4',
 										backgroundSize: 'cover',
 										backgroundPosition: 'center',
@@ -281,7 +278,7 @@ const Index = ({}: IApplicationProps) => {
 						color={'#323130'}
 						bgImage={isMobile ? undefined : undefined}
 						headline={'Homepage'}
-						subHeadline={'Site in construction'}
+						subHeadline={'Site constructed and abandoned by a lazy developer'}
 						message={customAlert as string}
 					/>
 				</CustomSection>
