@@ -123,7 +123,7 @@ const Index = ({}: IApplicationProps) => {
 							marginBottom: isChatSectionOpen ? isMobile ? '.4rem' : '.4rem' : '0rem',
 						}}>
 						<div style={{postion: 'relative', width: '100%', height: '100%', borderRadius: '.2rem'} as CSSProperties}>
-							{/* <ChatGPTApp /> */}
+							<ChatGPTApp />
 						</div>
 					</div>
 
@@ -310,7 +310,7 @@ const Index = ({}: IApplicationProps) => {
 						color={'#323130'}
 						bgImage={isMobile ? undefined : undefined}
 						headline={'Homepage'}
-						subHeadline={'Site in progress 🛠️'}
+						subHeadline={'Site in progress'}
 						message={customAlert as string}
 					/>
 				</CustomSection>
