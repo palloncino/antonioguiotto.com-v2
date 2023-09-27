@@ -1,0 +1,52 @@
+{
+  "views": [
+    {
+      "folderName": "Index",
+      "name": "Index",
+      "label": "Index",
+      "url": "/"
+    },
+    {
+      "folderName": "Weather",
+      "name": "Weather",
+      "label": "Weather",
+      "url": "/Weather"
+    },
+    {
+      "folderName": "KusamaAcid",
+      "name": "KusamaAcid",
+      "label": "KusamaAcid",
+      "url": "/KusamaAcid"
+    }
+  ],
+  "data": {
+    "videos": {
+      "data": [
+        {
+          "name": "video1",
+          "author": "AlessandroBarbero",
+          "title": "La scoperta delle americhe",
+          "url": "https://www.youtube.com/watch?v=siL7TClF_mQ&ab_channel=AlessandroBarbero-LaStoriasiamoNoi"
+        },
+        {
+          "name": "video1",
+          "author": "AlessandroBarbero",
+          "title": "La scoperta delle americhe",
+          "url": "https://www.youtube.com/watch?v=siL7TClF_mQ&ab_channel=AlessandroBarbero-LaStoriasiamoNoi"
+        },
+        {
+          "name": "video1",
+          "author": "AlessandroBarbero",
+          "title": "La scoperta delle americhe",
+          "url": "https://www.youtube.com/watch?v=siL7TClF_mQ&ab_channel=AlessandroBarbero-LaStoriasiamoNoi"
+        },
+        {
+          "name": "video1",
+          "author": "AlessandroBarbero",
+          "title": "La scoperta delle americhe",
+          "url": "https://www.youtube.com/watch?v=siL7TClF_mQ&ab_channel=AlessandroBarbero-LaStoriasiamoNoi"
+        }
+      ]
+    }
+  }
+}
