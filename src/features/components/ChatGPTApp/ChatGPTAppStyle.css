@@ -1,0 +1,61 @@
+/* Container CSS */
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 50vh; /* Ensures that the container takes the full viewport height */
+}
+
+/* Textarea CSS */
+.textarea {
+  flex: 4;
+  font-size: 1.5rem; /* Larger Font Size */
+  padding: 0.75rem; /* Padding around the text */
+  border: none; /* Removes default border */
+  outline: none; /* Removes the outline on focus */
+  box-sizing: border-box; /* Includes padding and border in element's width and height */
+  background: transparent;
+}
+
+/* Button CSS */
+.send-button {
+  flex: 1;
+  background: #ececec; /* Light grey background */
+  border: none;
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 1.5rem; /* Matches the font size of the input */
+  padding: 0.75rem; /* Matches the padding of the input */
+  transition: background-color 0.3s ease-in-out; /* Smooth transition for hover effect */
+  border-radius: 3.5rem;
+  height: 100%;
+}
+
+/* Button Active and Hover State */
+.send-button:active,
+.send-button:hover {
+  background-color: #ddd; /* Darker grey background on hover and active state */
+}
+
+/* Input Section CSS */
+.input-section {
+  display: flex;
+  align-items: stretch; /* Aligns the children vertically */
+  height: 3.5rem; /* Specified height */
+  border: 2px solid #ddd;
+  border-radius: 3.5rem;
+}
+
+/* Output Section CSS */
+.output-section {
+  font-size: 1.5rem; /* Larger Font Size */
+  padding: 0.75rem; /* Padding around the text */
+  width: 100%;
+  flex-grow: 1; /* Takes all available space */
+  overflow-y: auto; /* Adds scrollbar if content overflows */
+  padding: 10px;
+}
+
+/* History Section CSS */
+.history-section {
+  width: 100%;
+  margin-top: 20px;
+}

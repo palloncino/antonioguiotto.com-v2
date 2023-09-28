@@ -118,7 +118,7 @@ const Index = ({}: IApplicationProps) => {
 					<div id={'ChatInput'}
 						style={{
 							...tempStyle,
-							height: isChatSectionOpen ? isMobile ? undefined : '500px' : '0px',
+							height: isChatSectionOpen ? isMobile ? undefined : 'auto' : '0px',
 							transition: '.5s',
 							marginBottom: isChatSectionOpen ? isMobile ? '.4rem' : '.4rem' : '0rem',
 						}}>
@@ -305,14 +305,15 @@ const Index = ({}: IApplicationProps) => {
 	return (
 		<>
 			<StylePageContentContainer>
-				<CustomSection mb={isMobile ? '0rem' : '.4rem'}>
-					<HeroHeader
-						color={'#323130'}
-						bgImage={isMobile ? undefined : undefined}
-						headline={'Homepage'}
-						subHeadline={'Site in progress'}
-						message={customAlert as string}
-					/>
+				<CustomSection mb={isMobile ? '0rem' : isChatSectionOpen ? '0rem' : '.4rem'}>
+					{isChatSectionOpen ? '' : (
+						<HeroHeader
+							color={'#323130'}
+							bgImage={isMobile ? undefined : undefined}
+							headline={'Homepage'}
+							subHeadline={'Site in progress'}
+							message={customAlert as string} />
+					)}
 				</CustomSection>
 				{errorMessage ? errorMessageView() : isLoading ? renderLoader() : contentView()}
 			</StylePageContentContainer>
