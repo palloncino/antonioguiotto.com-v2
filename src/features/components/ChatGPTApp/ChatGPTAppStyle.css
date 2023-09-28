@@ -46,6 +46,10 @@
 
 /* Output Section CSS */
 .output-section {
+  background: #e4e4e4;
+  margin-bottom: .4rem;
+  box-sizing: border-box;
+  border-radius: 0.2rem;
   font-size: 1.5rem; /* Larger Font Size */
   padding: 0.75rem; /* Padding around the text */
   width: 100%;
@@ -57,5 +61,4 @@
 /* History Section CSS */
 .history-section {
   width: 100%;
-  margin-top: 20px;
 }

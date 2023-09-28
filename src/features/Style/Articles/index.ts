@@ -263,7 +263,7 @@ const StyledBanner01TextBox = styled.div<{isMobile?: boolean;isOpen?: boolean;}>
 
 	${({isMobile}) => isMobile ? `
 	` : `
-		width: 300px;
+		min-width: 300px;
 	`}
 `;
 

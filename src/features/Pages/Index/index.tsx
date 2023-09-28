@@ -106,8 +106,8 @@ const Index = ({}: IApplicationProps) => {
 						<CustomSection width={'100%'} mb={isChatSectionOpen ? '.4rem' : '.4rem'}>
 							<Banner01
 								id={Sections.Chat}
-								primaryText="Chat"
-								secondaryText="Some of my work"
+								primaryText="My Chat Assistant"
+								secondaryText="Ask about my working experience"
 								handleSetSectionOpen={handleSetSectionOpen}
 								isOpen={isChatSectionOpen}
 								bg={undefined}
@@ -123,7 +123,7 @@ const Index = ({}: IApplicationProps) => {
 							marginBottom: isChatSectionOpen ? isMobile ? '.4rem' : '.4rem' : '0rem',
 						}}>
 						<div style={{postion: 'relative', width: '100%', height: '100%', borderRadius: '.2rem'} as CSSProperties}>
-							<ChatGPTApp />
+							{isChatSectionOpen ? <ChatGPTApp /> : undefined}
 						</div>
 					</div>
 
@@ -176,7 +176,7 @@ const Index = ({}: IApplicationProps) => {
 										flexDirection: 'column',
 										justifyContent: 'flex-end',
 										cursor: 'pointer',
-										background: `url(${'https://antonio-guiotto-media.s3.amazonaws.com/sky01.jpeg' || 'https://picsum.photos/600'})`,
+										background: '#e4e4e4',
 										backgroundSize: 'cover',
 										backgroundPosition: 'center',
 									}}>
@@ -221,7 +221,7 @@ const Index = ({}: IApplicationProps) => {
 										flexDirection: 'column',
 										justifyContent: 'flex-end',
 										cursor: 'pointer',
-										background: `url(${undefined || img || '#e4e4e4'})`,
+										background: '#e4e4e4',
 										backgroundSize: 'cover',
 										backgroundPosition: 'center',
 									}}>

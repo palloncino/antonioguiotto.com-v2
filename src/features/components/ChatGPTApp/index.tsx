@@ -1,6 +1,6 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import './ChatGPTAppStyle.css';
-import { initialInstruction } from './initialIntructionChat';
+import {initialInstruction} from './initialIntructionChat';
 
 function ChatGPTApp() {
 	const [currentResponse, setCurrentResponse] = useState('');

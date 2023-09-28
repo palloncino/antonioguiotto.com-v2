@@ -79,6 +79,17 @@ export const NavBar = ({appConfig}: IFramedChildComponentProps) => {
 				{!isMobile && (
 					<StyledNavBarBox>
 						<Stack horizontal tokens={horizontalGapStackTokens}>
+
+							<div
+								tabIndex={1}
+								style={{cursor: 'pointer'}}
+								onClick={() => handleAnchor(Sections.Chat)}
+								onKeyPress={(e: any) => e.charCode === 13 && handleAnchor(Sections.Chat)}>
+								<Text variant="large">
+									{Sections.Chat}
+								</Text>
+							</div>
+
 							<div
 								tabIndex={1}
 								style={{cursor: 'pointer'}}
@@ -89,7 +100,7 @@ export const NavBar = ({appConfig}: IFramedChildComponentProps) => {
 								</Text>
 							</div>
 
-							{/* <div
+							<div
 								tabIndex={1}
 								style={{cursor: 'pointer'}}
 								onClick={() => handleAnchor(Sections.Videos)}
@@ -97,7 +108,7 @@ export const NavBar = ({appConfig}: IFramedChildComponentProps) => {
 								<Text variant="large">
 									{Sections.Videos}
 								</Text>
-							</div> */}
+							</div>
 
 							<div
 								tabIndex={1}
