@@ -1,64 +1,91 @@
-/* Container CSS */
 .container {
   display: flex;
-  flex-direction: column;
-  min-height: 50vh; /* Ensures that the container takes the full viewport height */
+  flex-direction: row;
+  min-height: 50vh;
 }
 
-/* Textarea CSS */
-.textarea {
-  flex: 4;
-  font-size: 1.5rem; /* Larger Font Size */
-  padding: 0.75rem; /* Padding around the text */
-  border: none; /* Removes default border */
-  outline: none; /* Removes the outline on focus */
-  box-sizing: border-box; /* Includes padding and border in element's width and height */
-  background: transparent;
-}
-
-/* Button CSS */
-.send-button {
-  flex: 1;
-  background: #ececec; /* Light grey background */
-  border: none;
-  cursor: pointer; /* Pointer cursor on hover */
-  font-size: 1.5rem; /* Matches the font size of the input */
-  padding: 0.75rem; /* Matches the padding of the input */
-  transition: background-color 0.3s ease-in-out; /* Smooth transition for hover effect */
-  border-radius: 3.5rem;
-  height: 100%;
-}
-
-/* Button Active and Hover State */
-.send-button:active,
-.send-button:hover {
-  background-color: #ddd; /* Darker grey background on hover and active state */
-}
-
-/* Input Section CSS */
-.input-section {
+.chat-section {
   display: flex;
-  align-items: stretch; /* Aligns the children vertically */
-  height: 3.5rem; /* Specified height */
-  border: 2px solid #ddd;
-  border-radius: 3.5rem;
+  flex-direction: column;
+  flex: 2;
+  border-right: 2px solid #ddd;
 }
 
-/* Output Section CSS */
 .output-section {
   background: #e4e4e4;
   margin-bottom: .4rem;
   box-sizing: border-box;
   border-radius: 0.2rem;
-  font-size: 1.5rem; /* Larger Font Size */
-  padding: 0.75rem; /* Padding around the text */
+  font-size: 1.5rem;
+  padding: 10px;
   width: 100%;
-  flex-grow: 1; /* Takes all available space */
-  overflow-y: auto; /* Adds scrollbar if content overflows */
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.input-section {
+  display: flex;
+  align-items: stretch;
+  height: 3.5rem;
+  border: 2px solid #ddd;
+  border-radius: 3.5rem;
+  width: 100%;
+}
+
+.textarea {
+  flex: 4;
+  font-size: 1.5rem;
+  padding: 0.75rem;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  background: transparent;
+}
+
+.send-button-container {
+  display: flex;
+  align-items: center;
+}
+
+.send-button {
+  background: #ececec;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  padding: 0.75rem;
+  transition: background-color 0.3s ease-in-out;
+  border-radius: 3.5rem;
+  height: 100%;
+}
+
+.send-button:active,
+.send-button:hover {
+  background-color: #ddd;
+}
+
+.history-section {
+  flex: 1;
+  width: 100%;
+}
+
+.clear-history-button-container {
+  display: flex;
+  justify-content: center;
   padding: 10px;
 }
 
-/* History Section CSS */
-.history-section {
-  width: 100%;
+.clear-history-button {
+  background: #ececec;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0.75rem;
+  transition: background-color 0.3s ease-in-out;
+  border-radius: 3.5rem;
+  max-height: 50px;
+}
+
+.clear-history-button:active,
+.clear-history-button:hover {
+  background-color: #ddd;
 }

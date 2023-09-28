@@ -38,7 +38,8 @@ function ChatGPTApp() {
 				`Conversation ${index + 1}:\nUser: ${prompt}\nChatGPT: ${response}`,
 			).join('\n');
 
-			const finalPrompt = `${initialInstruction}\n\n${historyFormattedString}\n[Current User prompt]: ${prompt}`;
+			// const finalPrompt = `${initialInstruction}\n\n${historyFormattedString}\n[Current User prompt]: ${prompt}`;
+			const finalPrompt = `${prompt}`;
 
 			const serverEndpoint = process.env.NODE_ENV === 'development'
 				? 'http://localhost:4000/dev/api/chat'
@@ -73,27 +74,29 @@ function ChatGPTApp() {
 	return (
 		<div className="App">
 			<div className="container">
-				<div className="output-section">
-					{loading ? <p>Loading ...</p> : formatTextResponse(currentResponse)}
-				</div>
-				<div className="input-section">
-					<textarea
-						className="textarea"
-						value={prompt}
-						onChange={(e: any) => setPrompt(e.target.value)}
-						onKeyDown={(e: any) => {
-							if (e.key === 'Enter' && !e.shiftKey) {
-								e.preventDefault();
-								sendQuery();
-							}
-						}}
-					/>
-					<div className="send-button-container">
-						<button className="send-button" onClick={sendQuery}>Send away</button>
+				<div className="chat-section">
+					<div className="output-section">
+						{loading ? <p>Loading ...</p> : formatTextResponse(currentResponse)}
+					</div>
+					<div className="input-section">
+						<textarea
+							className="textarea"
+							value={prompt}
+							onChange={e => setPrompt(e.target.value)}
+							onKeyDown={e => {
+								if (e.key === 'Enter' && !e.shiftKey) {
+									e.preventDefault();
+									sendQuery();
+								}
+							}}
+						/>
+						<div className="send-button-container">
+							<button className="send-button" onClick={sendQuery}>Send away</button>
+						</div>
 					</div>
 				</div>
 				<div className="history-section">
-					{history.map((item: any, index: number) => (
+					{history.map((item, index) => (
 						<details key={index}>
 							<summary>{index + 1}. {item.prompt}</summary>
 							<p>{item.response}</p>
