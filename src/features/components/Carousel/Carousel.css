@@ -1,0 +1,34 @@
+.carousel {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel-inner {
+  width: 100%;
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+}
+
+.carousel-item {
+  cursor: pointer;
+  box-sizing: border-box;
+  flex: 1;
+  height: 200px;
+  min-width: 300px;
+  background: #e4e4e4;
+  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  transition: 0.3s ease-in-out;
+  border-radius: .2rem;
+}
+.carousel-item:hover {
+  background: #d8d8d8;
+}
+
+.carousel-item.selected {
+  border-color: black;  /* Highlight the selected item with a bold border */
+}

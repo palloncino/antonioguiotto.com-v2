@@ -5,7 +5,7 @@ import {CSSProperties} from 'styled-components';
 import {useNavigation} from '../../../hooks';
 import {useDevice} from '../../../hooks/useDevice';
 import bg3 from '../../../media/svgs/bg3.svg';
-import img from './banner2.png';
+import img from './wip.png';
 import {IApplicationProps} from '../../../types';
 import {animateClick} from '../../../utils';
 import Banner01 from '../../components/Banner01';
@@ -15,6 +15,7 @@ import HeroHeader from '../../components/HeroHeader';
 import LinkUp from '../../components/LinkUp';
 import {CustomSection, StyledTextBox01, StylePageContentContainer, Wrapper01} from '../../Style';
 import config from '../../../app.config.json';
+import Carousel from '../../components/Carousel';
 
 export enum Sections {
 	/* */ Chat = 'Chat',
@@ -91,7 +92,7 @@ const Index = ({}: IApplicationProps) => {
 
 	const contentView = () => (
 		<Wrapper01>
-			<CustomSection mb={'20rem'}>
+			<CustomSection mb={'0rem'}>
 				<div style={isMobile ? {
 					display: 'flex',
 					flexDirection: 'column',
@@ -248,7 +249,11 @@ const Index = ({}: IApplicationProps) => {
 						</CustomSection>
 					</div>
 
-					{config.data.videos.data.map(({name, title, author, url}, index) => (
+					<div style={{width: '100%', height: isVideosSectionOpen ? isMobile ? 'unset' : '200px' : '0px', transition: '.5s'}}>
+						<Carousel />
+					</div>
+
+					{/* {config.data.videos.data.map(({name, title, author, url}, index) => (
 						<div
 							key={`${title}-${index}`}
 							style={{...tempStyleVideos, minWidth: 'calc(25% - 1rem)', height: isVideosSectionOpen ? isMobile ? 'unset' : '160px' : '0px', transition: '.5s', marginBottom: isVideosSectionOpen ? isMobile ? '.4rem' : '0rem' : '0rem'}}>
@@ -269,7 +274,7 @@ const Index = ({}: IApplicationProps) => {
 									}}/>
 							</div>
 						</div>
-					))}
+					))} */}
 
 					<div id="Contacts" className={`Contacts${isContactsSectionOpen ? ' open' : ''}`} style={{...tempStyle, flex: 2, minWidth: '100%'}}>
 						<CustomSection width={'100%'} mb={isMobile ? '.2rem' : '.4rem'} mt={isVideosSectionOpen ? '.4rem' : '0rem'}>
@@ -291,6 +296,12 @@ const Index = ({}: IApplicationProps) => {
 
 				</div>
 
+			</CustomSection>
+
+			<CustomSection mb={'4rem'}>
+				<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+					<img src={img} alt="site as work in progress" style={{width: '50%'}} />
+				</div>
 			</CustomSection>
 
 		</Wrapper01>

@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import './ChatGPTAppStyle.css';
 import {initialInstruction} from './initialIntructionChat';
 
@@ -6,7 +6,22 @@ function ChatGPTApp() {
 	const [currentResponse, setCurrentResponse] = useState('');
 	const [loading, setLoading] = useState(false);
 	const [prompt, setPrompt] = useState('');
-	const [history, setHistory] = useState<{prompt: string, response: string}[]>([]);
+	const [history, setHistory] = useState<{prompt: string, response: string}[]>(() => {
+		// Get history from localStorage on initial render
+		const savedHistory = localStorage.getItem('history');
+		return savedHistory ? JSON.parse(savedHistory) : [];
+	});
+
+	useEffect(() => {
+		// Save history to localStorage whenever it changes
+		localStorage.setItem('history', JSON.stringify(history));
+	}, [history]);
+
+	const clearHistory = () => {
+		// Clear history from both state and localStorage
+		setHistory([]);
+		localStorage.removeItem('history');
+	};
 
 	function formatTextResponse(text: string) {
 		const paragraphs = text.split('\n\n').map((paragraph, index) => {
@@ -85,9 +100,11 @@ function ChatGPTApp() {
 						</details>
 					))}
 				</div>
+				<div className="clear-history-button-container">
+					<button className="clear-history-button" onClick={clearHistory}>Clear History</button>
+				</div>
 			</div>
 		</div>
-
 	);
 }
 
