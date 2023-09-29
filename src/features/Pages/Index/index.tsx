@@ -107,8 +107,8 @@ const Index = ({}: IApplicationProps) => {
 						<CustomSection width={'100%'} mb={isChatSectionOpen ? '.4rem' : '.4rem'}>
 							<Banner01
 								id={Sections.Chat}
-								primaryText="My Chat Assistant"
-								secondaryText="Ask about my working experience"
+								primaryText="Encyclopedia"
+								secondaryText="General pourpose chat"
 								handleSetSectionOpen={handleSetSectionOpen}
 								isOpen={isChatSectionOpen}
 								bg={undefined}
@@ -250,7 +250,7 @@ const Index = ({}: IApplicationProps) => {
 					</div>
 
 					<div style={{width: '100%', height: isVideosSectionOpen ? isMobile ? 'unset' : '200px' : '0px', transition: '.5s'}}>
-						<Carousel />
+						<Carousel isParentOpen={isVideosSectionOpen}/>
 					</div>
 
 					{/* {config.data.videos.data.map(({name, title, author, url}, index) => (
@@ -317,7 +317,7 @@ const Index = ({}: IApplicationProps) => {
 		<>
 			<StylePageContentContainer>
 				<CustomSection mb={isMobile ? '0rem' : isChatSectionOpen ? '0rem' : '.4rem'}>
-					{isChatSectionOpen ? '' : (
+					{!isMobile && isChatSectionOpen ? '' : (
 						<HeroHeader
 							color={'#323130'}
 							bgImage={isMobile ? undefined : undefined}
@@ -328,7 +328,6 @@ const Index = ({}: IApplicationProps) => {
 				</CustomSection>
 				{errorMessage ? errorMessageView() : isLoading ? renderLoader() : contentView()}
 			</StylePageContentContainer>
-			{/* <CustomAlert customAlert={customAlert as string} /> */}
 		</>
 	);
 };

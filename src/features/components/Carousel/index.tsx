@@ -1,8 +1,34 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import './Carousel.css'; // Assume you have this CSS file
 
-function Carousel() {
+function Carousel({isParentOpen}: any) {
 	const [selectedIndex, setSelectedIndex] = useState(0);
+	const initialX = useRef<any>();
+
+	const items = Array.from({length: 10});
+
+	const handleTouchStart = (e: any) => {
+		initialX.current = e.touches[0].clientX;
+	};
+
+	const handleTouchMove = (e: any) => {
+		if (initialX.current === null) {
+			return;
+		}
+
+		const currentX = e.touches[0].clientX;
+		const differenceX = initialX.current - currentX;
+
+		if (differenceX > 0) {
+			// Swiped left
+			setSelectedIndex(prevIndex => (prevIndex + 1) % items.length);
+		} else if (differenceX < 0) {
+			// Swiped right
+			setSelectedIndex(prevIndex => (prevIndex - 1 + items.length) % items.length);
+		}
+
+		initialX.current = null;
+	};
 
 	const handleKeyDown = (e: { key: string; }) => {
 		if (e.key === 'ArrowRight') {
@@ -24,17 +50,17 @@ function Carousel() {
 	}, []);
 
 	return (
-		<div className="carousel">
+		<div className="carousel" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
 			<div className="carousel-inner" style={{transform: `translateX(-${selectedIndex * 300}px)`}}>
-				{Array.from({length: 10}).map((_, index) => (
+				{items.map((_, index) => (
 					<div
 						tabIndex={1}
 						key={index}
-						className={`carousel-item ${index === selectedIndex ? 'selected' : ''}`}
-						onKeyDown={(e: any) => e.key === 'Enter' && handleClick(index)}
-						onClick={() => handleClick(index)} // Add onClick handler here
+						className={`carousel-item ${!isParentOpen && 'closed-section'} ${index === selectedIndex ? 'selected' : ''}`}
+						onKeyDown={e => e.key === 'Enter' && handleClick(index)}
+						onClick={() => handleClick(index)}
 					>
-            Item {index + 1}
+							Item {index + 1}
 					</div>
 				))}
 			</div>

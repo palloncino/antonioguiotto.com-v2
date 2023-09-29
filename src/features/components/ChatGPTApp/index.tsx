@@ -62,7 +62,7 @@ function ChatGPTApp() {
 						{loading ? <p>Loading ...</p> : <p>{currentResponse}</p>}
 					</div>
 					<div className="input-section">
-						<textarea
+						<input
 							className="textarea"
 							value={prompt}
 							onChange={e => setPrompt(e.target.value)}
