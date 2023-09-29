@@ -26,7 +26,7 @@ function ChatGPTApp() {
 	function formatTextResponse(text: string) {
 		const paragraphs = text.split('\n\n').map((paragraph, index) => {
 			const lines = paragraph.split('\n').map((line, i) => <span key={i}>{line}<br /></span>);
-			return <p key={index}>{lines}</p>;
+			return <span key={index}>{lines}</span>;
 		});
 		return <>{paragraphs}</>;
 	}
@@ -96,15 +96,18 @@ function ChatGPTApp() {
 					</div>
 				</div>
 				<div className="history-section">
-					{history.map((item, index) => (
-						<details key={index}>
-							<summary>{index + 1}. {item.prompt}</summary>
-							<p>{item.response}</p>
-						</details>
-					))}
-				</div>
-				<div className="clear-history-button-container">
-					<button className="clear-history-button" onClick={clearHistory}>Clear History</button>
+					<div>
+						<h3>Chat history</h3>
+						{history.length ? history.map((item, index) => (
+							<details key={index}>
+								<summary>{index + 1}. {item.prompt}</summary>
+								<p>{item.response}</p>
+							</details>
+						)) : 'No Items'}
+					</div>
+					<div className="clear-history-button-container">
+						<button className="clear-history-button" onClick={clearHistory}>Clear History</button>
+					</div>
 				</div>
 			</div>
 		</div>
