@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import './ChatGPTAppStyle.css';
-import {initialInstruction} from './initialIntructionChat';
+// import {initialInstruction} from './initialIntructionChat';
 
 function ChatGPTApp() {
 	const [currentResponse, setCurrentResponse] = useState('');
@@ -34,18 +34,15 @@ function ChatGPTApp() {
 	const sendQuery = async () => {
 		setLoading(true);
 		try {
-			const historyFormattedString = history.map(({prompt, response}, index) =>
-				`Conversation ${index + 1}:\nUser: ${prompt}\nChatGPT: ${response}`,
-			).join('\n');
+			// const historyFormattedString = history.map(({prompt, response}, index) =>
+			// 	`Conversation ${index + 1}:\nUser: ${prompt}\nChatGPT: ${response}`,
+			// ).join('\n');
 
 			// const finalPrompt = `${initialInstruction}\n\n${historyFormattedString}\n[Current User prompt]: ${prompt}`;
-			const finalPrompt = `${prompt}`;
 
 			const serverEndpoint = process.env.NODE_ENV === 'development'
 				? 'http://localhost:4000/dev/api/chat'
 				: `${process.env.REACT_APP_API_ENDPOINT}/api/chat`;
-
-			console.log({prompt, finalPrompt});
 
 			const response = await fetch(serverEndpoint, {
 				method: 'POST',
@@ -53,7 +50,7 @@ function ChatGPTApp() {
 					'Content-Type': 'application/json',
 					'x-api-key': `${process.env.REACT_APP_GATEWAY_SECRET_KEY}`,
 				},
-				body: JSON.stringify({prompt: finalPrompt}),
+				body: JSON.stringify({prompt}),
 			});
 
 			const {payload} = await response.json();
