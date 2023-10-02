@@ -1,17 +1,20 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
+import { Spinner } from '@fluentui/react';
 import './ChatGPTAppStyle.css';
 
 function ChatGPTApp() {
 	const [currentResponse, setCurrentResponse] = useState('');
 	const [loading, setLoading] = useState(false);
 	const [prompt, setPrompt] = useState('');
-	const [history, setHistory] = useState<{role: string, content: string}[]>(() => {
+	const [prevPrompt, setPrevPrompt] = useState('');
+	const [history, setHistory] = useState<{ role: string, content: string }[]>(() => {
 		const savedHistory = localStorage.getItem('history');
 		return savedHistory ? JSON.parse(savedHistory) : [];
 	});
 
 	useEffect(() => {
 		localStorage.setItem('history', JSON.stringify(history));
+		console.log(history);
 	}, [history]);
 
 	const clearHistory = () => {
@@ -21,6 +24,8 @@ function ChatGPTApp() {
 
 	const sendQuery = async () => {
 		setLoading(true);
+		setPrevPrompt(prompt);
+
 		try {
 			const serverEndpoint = process.env.NODE_ENV === 'development'
 				? 'http://localhost:4000/dev/api/chat'
@@ -32,17 +37,15 @@ function ChatGPTApp() {
 					'Content-Type': 'application/json',
 					'x-api-key': `${process.env.REACT_APP_GATEWAY_SECRET_KEY}`,
 				},
-				body: JSON.stringify({prompt, messages: history}),
+				body: JSON.stringify({ prompt, messages: history }),
 			});
 
-			const {response} = await _res.json();
-
-			console.log(response);
+			const { response } = await _res.json();
 
 			setHistory(prevHistory => [
 				...prevHistory,
-				{role: 'human', content: prompt},
-				{role: 'ai', content: response || ''},
+				{ role: 'human', content: prompt },
+				{ role: 'ai', content: response || '' },
 			]);
 
 			setCurrentResponse(response);
@@ -54,15 +57,29 @@ function ChatGPTApp() {
 		}
 	};
 
+	const renderLoader = () => (
+		<div style={{width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+			<Spinner size={3} label="Loading" />
+		</div>
+	);
+
 	return (
 		<div className="App">
+
 			<div className="container">
+
 				<div className="chat-section">
+
 					<div className="output-section">
-						{loading ? <p>Loading ...</p> : <p>{currentResponse}</p>}
+						{loading ? renderLoader() : <span className="output-current-response">{`[Assistant]: ${currentResponse}`}</span>}
 					</div>
+					<div className="output-prompt">
+						<span className="output-prompt-message">{`[User]: ${prevPrompt}`}</span>
+					</div>
+
 					<div className="input-section">
 						<input
+							placeholder="Type your query"
 							className="textarea"
 							value={prompt}
 							onChange={e => setPrompt(e.target.value)}
@@ -74,18 +91,20 @@ function ChatGPTApp() {
 							}}
 						/>
 						<div className="send-button-container">
-							<button className="send-button" onClick={sendQuery}>Send away</button>
+							<button disabled={!prompt} className="send-button" onClick={sendQuery}>Send away</button>
 						</div>
 					</div>
+
 				</div>
+
 				<div className="history-section">
-					<div>
+					<div className="history-section-conversations-container">
 						<h3>Chat history</h3>
 						{history.length ? (
 							history.map((item, index, arr) => (
 								item.role === 'human' && (
 									<details key={index}>
-										<summary style={{cursor: 'pointer'}}>
+										<summary style={{ cursor: 'pointer' }}>
 											{(index / 2) + 1}. User: {item.content}
 										</summary>
 										<p>Assistant: {arr[index + 1]?.content}</p>
@@ -100,7 +119,9 @@ function ChatGPTApp() {
 						<button className="clear-history-button" onClick={clearHistory}>Clear History</button>
 					</div>
 				</div>
+
 			</div>
+
 		</div>
 	);
 }

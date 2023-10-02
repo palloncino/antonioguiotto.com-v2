@@ -4,7 +4,6 @@ import {MutableRefObject, useEffect, useRef, useState} from 'react';
 import {CSSProperties} from 'styled-components';
 import {useNavigation} from '../../../hooks';
 import {useDevice} from '../../../hooks/useDevice';
-import bg3 from '../../../media/svgs/bg3.svg';
 import img from './wip.png';
 import {IApplicationProps} from '../../../types';
 import {animateClick} from '../../../utils';
