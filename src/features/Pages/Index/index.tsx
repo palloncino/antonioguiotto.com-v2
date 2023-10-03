@@ -106,8 +106,8 @@ const Index = ({}: IApplicationProps) => {
 						<CustomSection width={'100%'} mb={isChatSectionOpen ? '.4rem' : '.4rem'}>
 							<Banner01
 								id={Sections.Chat}
-								primaryText="Encyclopedia"
-								secondaryText="General pourpose chat"
+								primaryText="Chatbot"
+								secondaryText="Powered by ChatGPT"
 								handleSetSectionOpen={handleSetSectionOpen}
 								isOpen={isChatSectionOpen}
 								bg={undefined}

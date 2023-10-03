@@ -1,20 +1,37 @@
-import { useState, useEffect } from 'react';
-import { Spinner } from '@fluentui/react';
+import {useState, useEffect} from 'react';
+import {Spinner} from '@fluentui/react';
 import './ChatGPTAppStyle.css';
+
+type Message = { role: 'human' | 'ai', content: string };
 
 function ChatGPTApp() {
 	const [currentResponse, setCurrentResponse] = useState('');
 	const [loading, setLoading] = useState(false);
 	const [prompt, setPrompt] = useState('');
 	const [prevPrompt, setPrevPrompt] = useState('');
-	const [history, setHistory] = useState<{ role: string, content: string }[]>(() => {
+	const [history, setHistory] = useState<Message[]>(() => {
 		const savedHistory = localStorage.getItem('history');
 		return savedHistory ? JSON.parse(savedHistory) : [];
 	});
 
+	function getLatestMessagesOnPage(history: any[]): void {
+		const _history = [...history];
+		const _reversedHistory = _history.reverse();
+		const lastHumanMessage = _reversedHistory.find(({role}) => role === 'human');
+		const lastBotMessage = _reversedHistory.find(({role}) => role === 'ai');
+
+		if (lastHumanMessage) {
+			setPrevPrompt(lastHumanMessage.content);
+		}
+
+		if (lastBotMessage) {
+			setCurrentResponse(lastBotMessage.content);
+		}
+	}
+
 	useEffect(() => {
 		localStorage.setItem('history', JSON.stringify(history));
-		console.log(history);
+		getLatestMessagesOnPage(history);
 	}, [history]);
 
 	const clearHistory = () => {
@@ -25,6 +42,7 @@ function ChatGPTApp() {
 	const sendQuery = async () => {
 		setLoading(true);
 		setPrevPrompt(prompt);
+		setPrompt('');
 
 		try {
 			const serverEndpoint = process.env.NODE_ENV === 'development'
@@ -37,22 +55,21 @@ function ChatGPTApp() {
 					'Content-Type': 'application/json',
 					'x-api-key': `${process.env.REACT_APP_GATEWAY_SECRET_KEY}`,
 				},
-				body: JSON.stringify({ prompt, messages: history }),
+				body: JSON.stringify({prompt, messages: history}),
 			});
 
-			const { response } = await _res.json();
+			const {response} = await _res.json();
 
 			setHistory(prevHistory => [
 				...prevHistory,
-				{ role: 'human', content: prompt },
-				{ role: 'ai', content: response || '' },
+				{role: 'human', content: prompt},
+				{role: 'ai', content: response || ''},
 			]);
 
 			setCurrentResponse(response);
 		} catch (error) {
 			console.error('There was an error making the request:', error);
 		} finally {
-			setPrompt('');
 			setLoading(false);
 		}
 	};
@@ -91,7 +108,7 @@ function ChatGPTApp() {
 							}}
 						/>
 						<div className="send-button-container">
-							<button disabled={!prompt} className="send-button" onClick={sendQuery}>Send away</button>
+							<button disabled={!prompt || loading} className="send-button" onClick={sendQuery}>Send away</button>
 						</div>
 					</div>
 
@@ -104,7 +121,7 @@ function ChatGPTApp() {
 							history.map((item, index, arr) => (
 								item.role === 'human' && (
 									<details key={index}>
-										<summary style={{ cursor: 'pointer' }}>
+										<summary style={{cursor: 'pointer'}}>
 											{(index / 2) + 1}. User: {item.content}
 										</summary>
 										<p>Assistant: {arr[index + 1]?.content}</p>

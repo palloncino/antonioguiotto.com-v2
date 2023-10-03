@@ -5,7 +5,78 @@ function Carousel({isParentOpen}: any) {
 	const [selectedIndex, setSelectedIndex] = useState(0);
 	const initialX = useRef<any>();
 
-	const items = Array.from({length: 10});
+	const items = [
+		{
+			id: '',
+			title: 'Random Picsum Image',
+			background: 'https://picsum.photos/200/300',
+			video: false,
+			image: true,
+		},
+		{
+			id: '',
+			title: 'Random Picsum Image',
+			background: 'https://picsum.photos/200/300',
+			video: false,
+			image: true,
+		},
+		{
+			id: '',
+			title: 'Random Picsum Image',
+			background: 'https://picsum.photos/200/300',
+			video: false,
+			image: true,
+		},
+		{
+			id: '',
+			title: 'Random Picsum Image',
+			background: 'https://picsum.photos/200/300',
+			video: false,
+			image: true,
+		},
+		{
+			id: '',
+			title: 'Random Picsum Image',
+			background: 'https://picsum.photos/200/300',
+			video: false,
+			image: true,
+		},
+		{
+			id: '',
+			title: 'Random Picsum Image',
+			background: 'https://picsum.photos/200/300',
+			video: false,
+			image: true,
+		},
+		{
+			id: '',
+			title: 'Random Picsum Image',
+			background: 'https://picsum.photos/200/300',
+			video: false,
+			image: true,
+		},
+		{
+			id: '',
+			title: 'Random Picsum Image',
+			background: 'https://picsum.photos/200/300',
+			video: false,
+			image: true,
+		},
+		{
+			id: '',
+			title: 'Random Picsum Image',
+			background: 'https://picsum.photos/200/300',
+			video: false,
+			image: true,
+		},
+		{
+			id: '',
+			title: 'Random Picsum Image',
+			background: 'https://picsum.photos/200/300',
+			video: false,
+			image: true,
+		},
+	];
 
 	const handleTouchStart = (e: any) => {
 		initialX.current = e.touches[0].clientX;
@@ -52,15 +123,16 @@ function Carousel({isParentOpen}: any) {
 	return (
 		<div className="carousel" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
 			<div className="carousel-inner" style={{transform: `translateX(-${selectedIndex * 300}px)`}}>
-				{items.map((_, index) => (
+				{items.map(({title, background}, index) => (
 					<div
 						tabIndex={1}
 						key={index}
 						className={`carousel-item ${!isParentOpen && 'closed-section'} ${index === selectedIndex ? 'selected' : ''}`}
 						onKeyDown={e => e.key === 'Enter' && handleClick(index)}
 						onClick={() => handleClick(index)}
+						style={{background: `url(${background}) center / cover no-repeat`}}
 					>
-							Item {index + 1}
+						{title} {index + 1}
 					</div>
 				))}
 			</div>
